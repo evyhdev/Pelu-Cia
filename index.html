@@ -8,57 +8,164 @@
 
   <link rel="stylesheet" href="/src/css/global.css">
   <link rel="stylesheet" href="/src/css/header.css">
+  <link rel="stylesheet" href="/src/css/home.css">
   <link rel="stylesheet" href="/src/css/footer.css">
 </head>
 
 <body>
   <header class="header">
-    <div class="logo">
-      <a href="/"><img src="/images/logos/logo.png" alt="Logo"></a>
+    <div class="container header-content">
+      <a href="/" class="logo">
+        <img src="/images/logos/logo.png" alt="Logo Pelu&Cia">
+      </a>
+
+      <nav class="menu" aria-label="Menu principal">
+        <a href="/src/pages/ajudar.html">
+          <img src="/icons/ajudar.png" alt="">
+          Ajudar
+        </a>
+        <a href="/src/pages/noticias.html">
+          <img src="/icons/noticias.png" alt="">
+          Notícias
+        </a>
+        <a href="/src/pages/voluntario.html">
+          <img src="/icons/voluntariado.png" alt="">
+          Voluntariado
+        </a>
+        <a href="/src/pages/sobre.html">
+          <img src="/icons/sobre.png" alt="">
+          Sobre
+        </a>
+      </nav>
+
+      <a href="#" class="login-button">Entrar</a>
     </div>
-
-    <input type="checkbox" id="menu-control" class="menu-checkbox">
-
-    <label for="menu-control" class="hamburger">
-      <span class="line"></span>
-      <span class="line"></span>
-      <span class="line"></span>
-    </label>
-
-    <nav class="nav">
-      <ul class="menu">
-        <li><a href="/src/pages/ajudar.html"><img src="/icons/ajudar.png" alt="">Ajudar</a></li>
-        <li><a href="/src/pages/noticias.html"><img src="/icons/noticias.png" alt="">Notícias</a></li>
-        <li><a href="/src/pages/voluntario.html"><img src="/icons/voluntariado.png" alt="">Voluntariado</a></li>
-        <li><a href="/src/pages/sobre.html"><img src="/icons/sobre.png" alt="">Sobre</a></li>
-      </ul>
-      <div class="actions">
-        <a href="#" class="login-btn">Login</a>
-      </div>
-    </nav>
   </header>
-  <section>
 
-  </section>
-  <footer class="footer">
-    <div class="footer-container">
+  <main>
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="hero-text">
+          <h1>Transforme uma vida com amor e carinho</h1>
+          <p>
+            A Pelu&Cia é um projeto social da UFC - Campus Quixadá dedicado ao
+            cuidado de animais do campus. Juntos, fazemos a diferença na vida
+            de cães e gatos que vivem aqui.
+          </p>
 
-      <div class="footer-column brand">
-        <div class="logo-wrapper">
-          <img src="/images/logos/logofooter.png" alt="Logo">
-          <div class="logo-text">
-            <h2>Pelu&Cia</h2>
-            <span>UFC Quixadá</span>
+          <div class="hero-actions">
+            <a href="/src/pages/ajudar.html" class="primary-button">
+              <img src="/icons/ajudar.png" alt="">
+              Quero Ajudar
+            </a>
+            <a href="/src/pages/voluntario.html" class="secondary-button">Seja Voluntário</a>
           </div>
         </div>
-        <div class="brand-desc">
-          <strong>Pelu&Cia</strong>
-          <p>Companhia dos Peludos</p>
-          <p>Projeto social da UFC Quixadá dedicado ao resgate e adoção responsável de animais.</p>
+
+        <img class="hero-image" src="/images/home/pelucia.png" alt="Imagem do projeto Pelu&Cia">
+      </div>
+    </section>
+
+    <section class="news-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Últimas Notícias</h2>
+          <p>Acompanhe as novidades do projeto</p>
+        </div>
+
+        <div class="news-grid">
+          <article class="news-card">
+            <img src="/images/noticias/noticia-1.png" alt="Cachorro resgatado">
+            <div class="news-content">
+              <h3>Resgate bem-sucedido no centro</h3>
+              <span>5 de abril de 2026</span>
+              <p>
+                Nossa equipe realizou mais um resgate importante, salvando 3
+                cachorrinhos que estavam em situação de risco.
+              </p>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <img src="/images/noticias/noticia-2.png" alt="Gato para adoção">
+            <div class="news-content">
+              <h3>Feira de Adoção no Campus</h3>
+              <span>28 de março de 2026</span>
+              <p>
+                Evento foi um sucesso! 12 animais encontraram seus lares
+                definitivos durante a feira de adoção.
+              </p>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <img src="/images/noticias/noticia-3.png" alt="Pessoa carregando cachorro">
+            <div class="news-content">
+              <h3>História de Sucesso: Max</h3>
+              <span>15 de março de 2026</span>
+              <p>
+                Conheça a história emocionante de Max, que encontrou uma
+                família amorosa após 8 meses no abrigo.
+              </p>
+            </div>
+          </article>
         </div>
       </div>
+    </section>
 
-      <div class="footer-column links">
+    <section class="partners-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Nossos Parceiros</h2>
+          <p>Empresas e instituições que apoiam nossa causa</p>
+        </div>
+
+        <div class="partners-grid">
+          <div class="partner-box">Parceiro 1</div>
+          <div class="partner-box">Parceiro 2</div>
+          <div class="partner-box">Parceiro 3</div>
+          <div class="partner-box">Parceiro 4</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Entre em Contato</h2>
+          <p>Tem dúvidas? Quer saber mais sobre o projeto? Envie sua mensagem!</p>
+        </div>
+
+        <form class="contact-form">
+          <label for="name">Nome</label>
+          <input type="text" id="name" placeholder="Seu nome completo">
+
+          <label for="email">E-mail</label>
+          <input type="email" id="email" placeholder="seu@email.com">
+
+          <label for="message">Mensagem</label>
+          <textarea id="message" placeholder="Escreva sua mensagem aqui..."></textarea>
+
+          <button type="submit">Enviar Mensagem</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-about">
+        <div class="footer-logo">
+          <img src="/images/logos/logofooter.png" alt="Logo Pelu&Cia">
+          <div>
+            <h2>Pelu&Cia</h2>
+            <span>ONG de Adoção</span>
+          </div>
+        </div>
+        <p>Projeto social da UFC Quixadá dedicado ao resgate e adoção responsável de animais.</p>
+      </div>
+
+      <div class="footer-links">
         <h3>Links Rápidos</h3>
         <ul>
           <li><a href="/src/pages/ajudar.html">Ajudar</a></li>
@@ -68,30 +175,23 @@
         </ul>
       </div>
 
-      <div class="footer-column social">
+      <div class="footer-social">
         <h3>Redes Sociais</h3>
         <p>Entre em contato conosco</p>
-        <div class="social-cards">
-          <a href="https://instagram.com/pelu.ciaqxd" target="_blank" rel="noreferrer" class="social-card">
-            <img src="/icons/instagram.png" alt="Instagram">
-            <div>
-              <span>Instagram</span>
-              <small>@pelu.ciaqxd</small>
-            </div>
-          </a>
-          <a href="mailto:pelu.ciaqxd@gmail.com" class="social-card">
-            <img src="/icons/email.png" alt="Email">
-            <div>
-              <span>Email</span>
-              <small>pelu.ciaqxd@gmail.com</small>
-            </div>
-          </a>
-        </div>
+        <a href="https://instagram.com/pelu.ciaqxd" class="social-card">
+          <img src="/icons/instagram.png" alt="">
+          <span>Instagram<br>@pelu.ciaqxd</span>
+        </a>
+        <a href="mailto:pelu.ciaqxd@gmail.com" class="social-card">
+          <img src="/icons/email.png" alt="">
+          <span>Email<br>pelu.ciaqxd@gmail.com</span>
+        </a>
       </div>
     </div>
 
-    <div class="footer-bottom">
+    <div class="container footer-bottom">
       <p>© 2026 Pelu&Cia - Todos os direitos reservados</p>
+      <p>Desenvolvido com amor pela equipe UFC Quixadá</p>
     </div>
   </footer>
 </body>

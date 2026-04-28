@@ -25,3 +25,9 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+.container {
+  width: 92%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
