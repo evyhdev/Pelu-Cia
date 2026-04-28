@@ -1,0 +1,145 @@
+.footer {
+  background-color: #2d76b9; /* Azul do projeto */
+  color: #ffffff;
+  padding: 4rem 5% 2rem;
+  font-family: sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+.footer-column {
+  flex: 1;
+}
+
+/* --- ESTILO DA LOGO --- */
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.logo-wrapper img {
+  width: 60px;
+}
+
+.logo-text h2 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.logo-text span {
+  color: #fbe4a1; /* Amarelo da logo */
+  font-weight: bold;
+}
+
+.brand-desc p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-top: 5px;
+  opacity: 0.9;
+}
+
+/* --- REMOVENDO AS BOLINHAS E AJUSTANDO LINKS --- */
+.footer-column h3 {
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.footer-column ul {
+  list-style: none; /* REMOVE AS BOLINHAS */
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-column ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.footer-column ul li a:hover {
+  text-decoration: underline;
+}
+
+/* --- REDES SOCIAIS COM CARTÕES --- */
+.social-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.social-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.social-card:hover {
+  transform: none;
+  background: transparent;
+}
+
+.social-card img {
+  width: 30px;
+  height: 30px;
+}
+
+.social-card div {
+  display: flex;
+  flex-direction: column;
+}
+
+.social-card span {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.social-card small {
+  opacity: 0.85;
+  color: #f1f8ff;
+}
+
+/* --- COPYRIGHT --- */
+.footer-bottom {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.footer-bottom p {
+  margin: 5px 0;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .logo-wrapper,
+  .social-links li {
+    justify-content: center;
+  }
+}
