@@ -32,19 +32,25 @@ Para manter a organização, utilizaremos o seguinte padrão de branches:
 - developer: Branch de integração. Ninguém sobe código direto aqui.
 - Branches Pessoais: Cada integrante deve criar sua branch a partir da developer.
 
-Como contribuir:
-Bash
-# 1. Mude para a developer e atualize-a
-git checkout developer
-git pull origin developer
+## 🌳 Fluxo de Trabalho (Branches Pre-existentes)
 
-# 2. Crie sua branch (ex: feature-header-daniel)
-git checkout -b feature-nome-da-tarefa
+As branches para cada página já foram criadas! Cada integrante deve trabalhar em sua respectiva branch. Antes de iniciar, é fundamental puxar o código da `main` para ter acesso à Header e ao CSS Global.
 
-# 3. Após terminar sua parte, suba para o GitHub
+### Como começar:
+```bash
+# 1. Atualize sua lista de branches do servidor
+git fetch
+
+# 2. Vá para a sua branch (exemplo: pages/adotar)
+git checkout pages/adotar
+
+# 3. Puxe o código da main para dentro da sua branch
+git pull origin main
+
+# 4. Agora é só codar! Ao terminar:
 git add .
-git commit -m "Explique o que você fez"
-git push origin feature-nome-da-tarefa
+git commit -m "feat: descrição da tarefa"
+git push origin pages/adotar
 
 📂 Estrutura de Pastas
 Plaintext
