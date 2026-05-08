@@ -1,6 +1,69 @@
-.voluntarioado-page .hero{
+.voluntariado-page .hero {
     background-color: #1E6BBB;
     color: white;
     text-align: center;
     padding: 60px 20px;
 }
+
+.voluntariado-page .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.voluntariado-page .hero p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.inscricao {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+}
+
+.inscricao .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+
+}
+
+.inscricao h2 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    color: #333;
+    text-align: center;
+}
+
+.inscricao p {
+    color: #666;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.form-row .form-group{
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    color: #333;
+}
+
