@@ -37,14 +37,11 @@
 
 .formulario-card {
   max-width: 760px;
-  background-color: var(--branco);
-  border: 1px solid var(--brancogelo);
-  border-radius: 8px;
   padding: 28px;
 }
 
 .inscricao h2 {
-  color: #333333;
+  color: var();
   margin-bottom: 5px;
 }
 
@@ -73,7 +70,7 @@
 .campo input {
   width: 100%;
   padding: 10px;
-  border: 1px solid var(--cinza-subtitulo);
+  border: 1px solid var(--formulario-borda);
   border-radius: 4px;
   font-size: 15px;
 }
@@ -82,7 +79,6 @@
   display: block;
   color: var(--preto);
   font-weight: bold;
-  margin-bottom: 6px;
 }
 
 .opcoes-disponibilidade {
