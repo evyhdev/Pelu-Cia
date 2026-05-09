@@ -1,0 +1,210 @@
+.pagina-ajudar{
+    padding: 25px 20px;
+    background-color:
+}
+
+
+
+
+
+
+
+
+/* .pagina-ajudar {
+  padding: 30px 20px;
+  background-color: #ffffff;
+}
+
+.titulo {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.titulo h1 {
+  color: #0057c2;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.titulo p {
+  color: #777777;
+  font-size: 15px;
+}
+
+.card-info {
+  max-width: 1100px;
+  margin: 0 auto 35px;
+  padding: 35px;
+  text-align: center;
+  background-color: #eef6ff;
+  border: 1px solid #c8dff7;
+  border-radius: 8px;
+}
+
+.card-info h2 {
+  color: #0057c2;
+  margin-bottom: 15px;
+}
+
+.card-info p {
+  max-width: 700px;
+  margin: 0 auto 20px;
+  color: #666666;
+  line-height: 1.5;
+}
+
+.botao-azul {
+  display: inline-block;
+  background-color: #0057c2;
+  color: white;
+  padding: 10px 22px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.estatisticas {
+  max-width: 1100px;
+  margin: 0 auto 35px;
+  display: flex;
+  gap: 20px;
+}
+
+.card-estatistica {
+  width: 50%;
+  padding: 25px;
+  text-align: center;
+  background-color: #eef6ff;
+  border: 1px solid #d8e7f5;
+  border-radius: 8px;
+}
+
+.card-estatistica.amarelo {
+  background-color: #fff8e8;
+  border-color: #f1dfb8;
+}
+
+.card-estatistica img {
+  width: 35px;
+  margin-bottom: 10px;
+}
+
+.card-estatistica h3 {
+  color: #333333;
+  margin-bottom: 5px;
+}
+
+.card-estatistica p {
+  color: #777777;
+  font-size: 14px;
+}
+
+.doacao {
+  max-width: 800px;
+  margin: 0 auto 50px;
+}
+
+.abas {
+  display: flex;
+  background-color: #f2f2f2;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  padding: 3px;
+}
+
+.aba {
+  width: 33.33%;
+  text-align: center;
+  padding: 8px;
+  font-size: 13px;
+  color: #555555;
+}
+
+.aba.ativa {
+  background-color: white;
+  border-radius: 20px;
+}
+
+.card-doacao {
+  padding: 30px;
+  text-align: center;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+}
+
+.card-doacao h2 {
+  color: #333333;
+  margin-bottom: 8px;
+}
+
+.card-doacao p {
+  color: #777777;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.chave-pix {
+  background-color: #f4f4f4;
+  padding: 15px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #555555;
+  margin-bottom: 15px;
+}
+
+.botao-copiar {
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.favorecido {
+  background-color: #fff8e8;
+  border: 1px solid #f1dfb8;
+  color: #6b5b2e;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.chamada {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 45px 20px;
+  text-align: center;
+  background-color: #0057c2;
+  border-radius: 8px;
+  color: white;
+}
+
+.chamada h2 {
+  margin-bottom: 10px;
+}
+
+.chamada p {
+  max-width: 650px;
+  margin: 0 auto 20px;
+  line-height: 1.5;
+}
+
+.botao-claro {
+  display: inline-block;
+  background-color: #ffe28a;
+  color: #333333;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.botao-contorno {
+  display: inline-block;
+  color: white;
+  padding: 9px 20px;
+  border: 1px solid white;
+  border-radius: 5px;
+  text-decoration: none;
+} */
