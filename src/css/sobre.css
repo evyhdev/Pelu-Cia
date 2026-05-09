@@ -1,0 +1,95 @@
+.hero-sobre {
+  background-color: #0044cc;
+  color: #ffffff;
+  text-align: center;
+  padding: 64px 80px; 
+}
+
+.historia-conteudo{
+    display:flex;
+    padding: 40px;
+}
+
+.nossa-historia{
+  overflow: hidden;
+}
+
+.historia-texto h2 {
+  color: #0044cc;
+  text-align: center;
+}
+
+.historia-imagem {
+  width: 450px; 
+}
+
+.historia-imagem img {
+  width: 450px; 
+  border-radius: 12px;
+}
+.nosso-impacto {
+  background-color: #f8f9fa;
+  padding: 80px 0px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.nosso-impacto h2 {
+  color: #0044cc;
+}
+
+.card-impacto {
+  background-color: #ffffff;
+  padding: 40px;
+  display: inline-block;
+  width: 300px;
+  text-align: center;
+}
+
+.card-icone {
+  width: 40px;
+}
+
+.faca-parte {
+  background-color: #0044cc;
+  color: #ffffff;
+  text-align: center;
+  padding: 85px;
+}
+
+.btn-dourado {
+  display: inline-block;
+  padding: 12px 32px;
+  background-color: #f5a623;
+  color: #ffffff;
+  font-size: 15px;
+  margin-right: 17px;
+}
+
+.btn-contorno-branco {
+  display: inline-block;
+  padding: 12px 32px;
+  background-color: transparent;
+  color: #ffffff;
+  border-style: solid;
+  border-color: #ffffff;
+  font-size: 15px;
+}
+.rodape {
+  background-color: #1a1a2e;
+  color: #cccccc;
+  padding: 48px 0px 24px;
+  overflow: hidden;
+}
+
+.rodape-logo {
+  margin-bottom: 12px;
+}
+
+.rodape-logo img {
+  height: 32px;
+}
+
+.social-item img {
+  height: 20px;
+}
