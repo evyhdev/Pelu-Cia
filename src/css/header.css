@@ -1,9 +1,9 @@
-.header {
+.cabecalho {
   background-color: var(--branco);
   border-bottom: 1px solid #dddddd;
 }
 
-.header-content {
+.cabecalho-conteudo {
   min-height: 58px;
   display: flex;
   align-items: center;
@@ -34,7 +34,7 @@
   height: 18px;
 }
 
-.login-button {
+.botao-login {
   background-color: var(--azul-titulo);
   color: var(--branco);
   padding: 9px 22px;
@@ -43,13 +43,13 @@
 }
 
 @media (max-width: 850px) {
-  .header-content,
+  .cabecalho-conteudo,
   .menu {
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  .header-content {
+  .cabecalho-conteudo {
     padding: 12px 0;
   }
 }

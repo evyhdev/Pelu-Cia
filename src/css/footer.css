@@ -1,62 +1,62 @@
-.footer {
+.rodape {
   background-color: var(--azul-titulo);
   color: var(--branco);
   padding: 44px 0 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-.footer-content {
+.rodape-conteudo {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1.4fr;
   gap: 70px;
 }
 
-.footer-logo {
+.rodape-logo {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 18px;
 }
 
-.footer-logo img {
+.rodape-logo img {
   width: 46px;
 }
 
-.footer-logo h2 {
+.rodape-logo h2 {
   font-size: 18px;
   line-height: 1;
 }
 
-.footer-logo span,
-.footer-about p,
-.footer-social p,
-.footer-bottom {
+.rodape-logo span,
+.rodape-sobre p,
+.rodape-social p,
+.rodape-final {
   font-size: 14px;
 }
 
-.footer-about p,
-.footer-social p {
+.rodape-sobre p,
+.rodape-social p {
   line-height: 1.6;
 }
 
-.footer h3 {
+.rodape h3 {
   font-size: 17px;
   margin-bottom: 18px;
 }
 
-.footer-links ul {
+.rodape-links ul {
   list-style: none;
 }
 
-.footer-links li {
+.rodape-links li {
   margin-bottom: 10px;
 }
 
-.footer-links a {
+.rodape-links a {
   font-size: 14px;
 }
 
-.social-card {
+.social-item {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -66,17 +66,17 @@
   margin-top: 12px;
 }
 
-.social-card img {
+.social-item img {
   width: 22px;
   height: 22px;
 }
 
-.social-card span {
+.social-item span {
   font-size: 14px;
   line-height: 1.4;
 }
 
-.footer-bottom {
+.rodape-final {
   text-align: center;
   border-top: 1px solid rgba(255, 255, 255, 0.25);
   margin-top: 42px;
@@ -84,7 +84,7 @@
 }
 
 @media (max-width: 850px) {
-  .footer-content {
+  .rodape-conteudo {
     grid-template-columns: 1fr;
   }
 }
