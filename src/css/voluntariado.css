@@ -1,0 +1,112 @@
+.hero {
+  background-color: var(--azul-titulo);
+  color: var(--branco);
+  text-align: center;
+  padding: 45px 20px;
+}
+
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: auto;
+}
+
+.foto-section {
+  padding: 35px 20px 10px;
+}
+
+.foto-gato {
+  max-width: 760px;
+  margin: auto;
+}
+
+.foto-gato img {
+  width: 100%;
+  height: 330px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.inscricao {
+  padding: 35px 20px 55px;
+}
+
+.formulario-card {
+  max-width: 760px;
+  background-color: var(--branco);
+  border: 1px solid var(--brancogelo);
+  border-radius: 8px;
+  padding: 28px;
+}
+
+.inscricao h2 {
+  color: #333333;
+  margin-bottom: 5px;
+}
+
+.inscricao p {
+  color: var(--cinza-subtitulo);
+  margin-bottom: 22px;
+}
+
+.linha-form {
+  display: flex;
+  gap: 18px;
+}
+
+.campo {
+  width: 100%;
+  margin-bottom: 18px;
+}
+
+.campo label {
+  display: block;
+  color: var(--preto);
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.campo input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--cinza-subtitulo);
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+.label-disponibilidade {
+  display: block;
+  color: var(--preto);
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.opcoes-disponibilidade {
+  display: flex;
+  gap: 20px;
+}
+
+.opcoes-disponibilidade label {
+  font-weight: normal;
+}
+
+.termos {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.btn-submit {
+  background-color: var(--azul-titulo);
+  color: var(--branco);
+  padding: 12px 22px;
+  border: none;
+  border-radius: 4px;
+  margin-top: 20px;
+  font-size: 16px;
+}
