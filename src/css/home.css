@@ -54,7 +54,6 @@
 
 .btn-dourado img {
   width: 17px;
-  height: 17px;
   margin-right: 10px;
 }
 
@@ -65,7 +64,6 @@
 .hero-imagem {
   max-width: 520px;
   border-radius: 12px;
-  display: block;
 }
 
 .parceiros {
