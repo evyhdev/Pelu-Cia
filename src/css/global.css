@@ -6,7 +6,9 @@
   --branco: #ffffff;
   --brancogelo: #f5f5f5;
   --preto-destaque: #1a1a1a;
-  --formulario-borda: #d4d4d4
+  --formulario-borda: #d4d4d4;
+  --azul-transp: #4f9ce473;
+  --amarelo-transp: #ffecb3af;
 }
 
 * {

@@ -37,11 +37,15 @@
 
 .formulario-card {
   max-width: 760px;
-  padding: 28px;
+  margin: 0 auto;
+  background-color: var(--branco);
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  padding: 24px;
 }
 
 .inscricao h2 {
-  color: var();
+  color: var(--azul-titulo);
   margin-bottom: 5px;
 }
 
@@ -52,6 +56,7 @@
 
 .linha-form {
   display: flex;
+  flex-wrap: wrap;
   gap: 18px;
 }
 
@@ -62,27 +67,25 @@
 
 .campo label {
   display: block;
-  color: var(--preto);
-  font-weight: bold;
   margin-bottom: 6px;
 }
 
 .campo input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid var(--formulario-borda);
-  border-radius: 4px;
-  font-size: 15px;
+  border: 0;
+  border-radius: 6px;
+  background-color: var(--brancogelo);
+  padding: 12px;
 }
 
 .label-disponibilidade {
   display: block;
-  color: var(--preto);
-  font-weight: bold;
+  margin-bottom: 6px;
 }
 
 .opcoes-disponibilidade {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
@@ -98,11 +101,11 @@
 }
 
 .btn-submit {
+  width: 100%;
   background-color: var(--azul-titulo);
   color: var(--branco);
-  padding: 12px 22px;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
+  padding: 13px;
   margin-top: 20px;
-  font-size: 16px;
 }
