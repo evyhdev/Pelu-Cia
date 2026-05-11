@@ -6,7 +6,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
-        // Caminhos atualizados para incluir /src/
         adotar: resolve(__dirname, "src/pages/adotar.html"),
         ajudar: resolve(__dirname, "src/pages/ajudar.html"),
         noticias: resolve(__dirname, "src/pages/noticias.html"),
