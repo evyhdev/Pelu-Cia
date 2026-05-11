@@ -1,166 +1,114 @@
-.hero {
+.hero-home {
   background-color: var(--azul-titulo);
   color: var(--branco);
-  padding: 110px 0;
+  padding: 80px;
 }
 
-.hero-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.hero-conteudo {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 70px;
+  gap: 100px;
 }
 
-.hero h1 {
+.hero-texto {
+  flex: 1;
+  min-width: 280px;
+}
+
+.hero-foto {
+  flex: 1;
+  min-width: 280px;
+}
+
+.hero-texto h1 {
   max-width: 520px;
   font-size: 54px;
   line-height: 1.15;
-  margin-bottom: 28px;
 }
 
-.hero p {
+.hero-texto p {
   max-width: 520px;
-  font-size: 19px;
-  line-height: 1.7;
-  margin-bottom: 56px;
+  margin-bottom: 10px;
 }
 
-.hero-actions {
+.hero-botoes {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
 }
 
-.primary-button,
-.secondary-button {
+.btn-dourado,
+.btn-contorno-branco {
   min-height: 40px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   border-radius: 6px;
   padding: 0 20px;
-  font-size: 14px;
 }
 
-.primary-button {
+.btn-dourado {
   background-color: var(--amarelo-logo);
-  color: #111827;
+  color: var(--preto-destaque);
 }
 
-.primary-button img {
+.btn-dourado img {
   width: 17px;
-  height: 17px;
   margin-right: 10px;
 }
 
-.secondary-button {
+.btn-contorno-branco {
   border: 1px solid var(--branco);
-  color: var(--branco);
 }
 
-.hero-image {
-  width: 100%;
+.hero-imagem {
+  max-width: 520px;
   border-radius: 12px;
-  display: block;
 }
 
-.news-section,
-.partners-section,
-.contact-section {
+.parceiros {
+  background-color: var(--branco);
   padding: 58px 0;
 }
 
-.news-section {
-  background-color: #f4f4f4;
-}
-
-.section-title {
+.titulo-secao {
   text-align: center;
   margin-bottom: 42px;
 }
 
-.section-title h2 {
+.titulo-secao h2 {
   color: var(--azul-titulo);
   font-size: 32px;
-  line-height: 1.2;
-  margin-bottom: 10px;
 }
 
-.section-title p {
+.titulo-secao p {
   color: var(--cinza-subtitulo);
-  font-size: 17px;
 }
 
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.news-card {
-  background-color: var(--branco);
-  border: 1px solid #dddddd;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.news-card img {
-  width: 100%;
-  height: 172px;
-  object-fit: cover;
-  display: block;
-}
-
-.news-content {
-  padding: 28px 22px 22px;
-}
-
-.news-content h3 {
-  font-size: 16px;
-  font-weight: 400;
-  margin-bottom: 6px;
-}
-
-.news-content span {
-  display: block;
-  color: var(--cinza-subtitulo);
-  font-size: 14px;
-  margin-bottom: 24px;
-}
-
-.news-content p {
-  color: var(--cinza-subtitulo);
-  font-size: 14px;
-  line-height: 1.35;
-}
-
-.partners-section {
-  background-color: var(--branco);
-}
-
-.partners-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.parceiros-lista {
+  display: flex;
+  flex-wrap: wrap;
   gap: 70px;
 }
 
-.partner-box {
+.parceiro-card {
+  flex: 1;
+  min-width: 180px;
   height: 110px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f8f8f8;
+  background: var(--brancogelo);
   border-radius: 8px;
   color: #9ca3af;
-  font-weight: 700;
 }
 
-.contact-section {
-  background-color: #eaf1f8;
-  padding-bottom: 72px;
+.contato {
+  background-color:var(--brancogelo);
+  padding: 58px ;
 }
 
-.contact-form {
+.formulario-contato {
   max-width: 600px;
   margin: 0 auto;
   background-color: var(--branco);
@@ -169,69 +117,26 @@
   padding: 24px;
 }
 
-.contact-form label {
+.formulario-contato label {
   display: block;
-  font-size: 14px;
-  margin-bottom: 8px;
 }
 
-.contact-form input,
-.contact-form textarea {
+.formulario-contato input,
+.formulario-contato textarea {
   width: 100%;
   border: 0;
   border-radius: 6px;
-  background-color: #f0f0f2;
+  background-color: var(--brancogelo);
   padding: 12px;
   margin-bottom: 18px;
-  font: inherit;
 }
 
-.contact-form textarea {
-  min-height: 70px;
-  resize: vertical;
-}
 
-.contact-form button {
+
+.formulario-contato button {
   width: 100%;
-  border: 0;
   background-color: var(--azul-titulo);
   color: var(--branco);
   border-radius: 6px;
   padding: 13px;
-  font: inherit;
-  cursor: pointer;
-}
-
-@media (max-width: 850px) {
-  .hero {
-    padding: 64px 0;
-  }
-
-  .hero-content,
-  .news-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero h1 {
-    font-size: 40px;
-  }
-
-  .partners-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-}
-
-@media (max-width: 520px) {
-  .hero h1 {
-    font-size: 34px;
-  }
-
-  .hero p {
-    font-size: 16px;
-  }
-
-  .partners-grid {
-    grid-template-columns: 1fr;
-  }
 }

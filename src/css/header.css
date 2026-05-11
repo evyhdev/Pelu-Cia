@@ -1,14 +1,13 @@
-.header {
+.cabecalho {
   background-color: var(--branco);
-  border-bottom: 1px solid #dddddd;
 }
 
-.header-content {
-  min-height: 58px;
+.cabecalho-conteudo {
+  min-height: 65px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  flex-wrap: wrap;
 }
 
 .logo img {
@@ -19,8 +18,10 @@
 .menu {
   display: flex;
   align-items: center;
-  gap: 32px;
-  font-size: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 45px;
+  font-size: 16px;
 }
 
 .menu a {
@@ -34,29 +35,11 @@
   height: 18px;
 }
 
-.login-button {
+.botao-login {
   background-color: var(--azul-titulo);
   color: var(--branco);
   padding: 9px 22px;
   border-radius: 6px;
   font-size: 14px;
-}
-
-@media (max-width: 850px) {
-  .header-content,
-  .menu {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .header-content {
-    padding: 12px 0;
-  }
-}
-
-@media (max-width: 520px) {
-  .menu {
-    gap: 14px;
-    font-size: 13px;
-  }
+  text-align: center;
 }

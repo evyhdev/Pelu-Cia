@@ -1,90 +1,57 @@
-.footer {
+.rodape {
   background-color: var(--azul-titulo);
   color: var(--branco);
-  padding: 44px 0 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 44px 24px;
+  border-top: 1px solid var(--branco);
 }
 
-.footer-content {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1.4fr;
-  gap: 70px;
+.rodape-conteudo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px 70px;
 }
 
-.footer-logo {
+.rodape-sobre,
+.rodape-links,
+.rodape-social {
+  flex: 1;
+  min-width: 220px;
+}
+
+.rodape-logo {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 18px;
 }
 
-.footer-logo img {
+.rodape-logo img {
   width: 46px;
 }
 
-.footer-logo h2 {
-  font-size: 18px;
-  line-height: 1;
-}
-
-.footer-logo span,
-.footer-about p,
-.footer-social p,
-.footer-bottom {
-  font-size: 14px;
-}
-
-.footer-about p,
-.footer-social p {
-  line-height: 1.6;
-}
-
-.footer h3 {
-  font-size: 17px;
+.rodape h3 {
   margin-bottom: 18px;
 }
 
-.footer-links ul {
+.rodape-links ul {
   list-style: none;
 }
 
-.footer-links li {
-  margin-bottom: 10px;
-}
-
-.footer-links a {
-  font-size: 14px;
-}
-
-.social-card {
+.social-item {
   display: flex;
   align-items: center;
   gap: 16px;
-  background-color: rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  padding: 14px;
-  margin-top: 12px;
+  padding: 14px 0;
 }
 
-.social-card img {
+.social-item img {
   width: 22px;
   height: 22px;
 }
 
-.social-card span {
+.rodape-final {
   font-size: 14px;
-  line-height: 1.4;
-}
-
-.footer-bottom {
   text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
-  margin-top: 42px;
+  border-top: 1px solid var(--brancogelo);
   padding-top: 22px;
-}
-
-@media (max-width: 850px) {
-  .footer-content {
-    grid-template-columns: 1fr;
-  }
 }

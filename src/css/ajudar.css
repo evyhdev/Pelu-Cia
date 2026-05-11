@@ -1,0 +1,427 @@
+.pagina-ajudar {
+  padding: 25px 20px;
+  background-color: var(--branco);
+}
+
+.titulo {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.titulo h1 {
+  color: var(--azul-titulo);
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.titulo p {
+  color: var(--cinza-subtitulo);
+  font-size: 15px;
+}
+
+.card-info {
+  max-width: 1100px;
+  margin: 0 auto 35px;
+  padding: 35px;
+  text-align: center;
+  background-color: var(--azul-transp);
+  border: 1px solid var(--formulario-borda);
+  border-radius: 8px;
+}
+
+.card-info h2 {
+  color: var(--azul-titulo);
+  margin-bottom: 12px;
+}
+
+.card-info p {
+  color: var(--cinza-subtitulo);
+  max-width: 700px;
+  margin: 0 auto 20px;
+}
+
+.botao-azul {
+  display: inline-flex;
+  background-color: var(--azul-titulo);
+  color: var(--branco);
+  padding: 15px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.botao-azul img {
+  width: 25px;
+  padding: auto;
+  padding-right: 3px;
+  display: inline-block;
+}
+
+.estatisticas {
+  max-width: 1100px;
+  margin: 0 auto 35px;
+  display: flex;
+  gap: 20px;
+}
+
+.card-estatistica {
+  width: 50%;
+  padding: 25px;
+  text-align: center;
+  background-color: var(--azul-transp);
+  border: 1px solid var(--formulario-borda);
+  border-radius: 8px;
+}
+.card-estatistica.amarelo {
+  background-color: var(--amarelo-transp);
+  border-color: var(--amarelo-logo);
+}
+
+.card-estatistica img {
+  width: 35px;
+  margin-bottom: 10px;
+}
+
+.card-estatistica h3 {
+  color: var(--preto-destaque);
+  margin-bottom: 5px;
+}
+
+.card-estatistica p {
+  color: var(--cinza-subtitulo);
+  font-size: 14px;
+}
+
+.doacao {
+  max-width: 800px;
+  margin: 0 auto 50px;
+}
+.abas {
+  display: flex;
+  background-color: var(--brancogelo);
+  border-radius: 20px;
+  margin-bottom: 10px;
+  padding: 3px;
+}
+
+.aba {
+  width: 33.33%;
+  text-align: center;
+  padding: 8px;
+  font-size: 13px;
+  color: var(--cinza-subtitulo);
+}
+
+.aba.ativa {
+  background-color: var(--branco);
+  border-radius: 20px;
+}
+.card-doacao {
+  padding: 30px;
+  text-align: center;
+  border: 1px solid var(--formulario-borda);
+  border-radius: 8px;
+}
+
+.card-doacao h2 {
+  color: var(--preto-destaque);
+  margin-bottom: 8px;
+}
+
+.card-doacao p {
+  color: var(--cinza-subtitulo);
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.chave-pix {
+  background-color: var(--brancogelo);
+  padding: 15px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--cinza-subtitulo);
+  margin-bottom: 15px;
+}
+
+.botao-copiar {
+  padding: 10px 20px;
+  border: 1px solid var(--brancogelo);
+  background-color: var(--azul-transp);
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.favorecido {
+  background-color: var(--amarelo-transp);
+  border: 1px solid var(--amarelo-logo);
+  color: var(--preto-destaque);
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.chamada {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 45px 20px;
+  text-align: center;
+  background-color: var(--azul-titulo);
+  border-radius: 8px;
+  color: var(--branco);
+}
+
+.chamada h2 {
+  margin-bottom: 10px;
+}
+
+.chamada p {
+  max-width: 650px;
+  margin: 0 auto 20px;
+  line-height: 1.5;
+}
+
+.botao-claro {
+  display: inline-block;
+  background-color: var(--amarelo-logo);
+  color: var(--preto-destaque);
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.botao-contorno {
+  display: inline-block;
+  color: var(--branco);
+  padding: 9px 20px;
+  border: 1px solid var(--branco);
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.doacao input {
+  display: none;
+}
+
+.abas {
+  max-width: 800px;
+  margin: 0 auto 10px;
+  display: flex;
+  background-color: var(--brancogelo);
+  border-radius: 20px;
+  padding: 4px;
+}
+
+.abas label {
+  width: 33.33%;
+  text-align: center;
+  padding: 9px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--preto-destaque);
+}
+
+#aba-pix:checked ~ .abas label[for="aba-pix"],
+#aba-transferencia:checked ~ .abas label[for="aba-transferencia"],
+#aba-contas:checked ~ .abas label[for="aba-contas"] {
+  background-color: var(--branco);
+}
+
+.conteudos-abas {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.conteudo {
+  display: none;
+  padding: 35px;
+  text-align: center;
+  border: 1px solid var(--formulario-borda);
+  border-radius: 10px;
+  background-color: var(--branco);
+}
+
+#aba-pix:checked ~ .conteudos-abas .conteudo-pix {
+  display: block;
+}
+
+#aba-transferencia:checked ~ .conteudos-abas .conteudo-transferencia {
+  display: block;
+}
+
+#aba-contas:checked ~ .conteudos-abas .conteudo-contas {
+  display: block;
+}
+
+.icone-grande {
+  color: var(--azul-titulo);
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+
+.conteudo h2 {
+  color: var(--preto-destaque);
+  margin-bottom: 8px;
+}
+
+.conteudo p {
+  color: var(--cinza-subtitulo);
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.dados-banco {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: var(--brancogelo);
+  border-radius: 8px;
+  text-align: left;
+}
+
+.dados-banco div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--formulario-borda);
+}
+
+.dados-banco div:last-child {
+  border-bottom: none;
+}
+
+.dados-banco span {
+  color: var(--cinza-subtitulo);
+}
+
+.dados-banco strong {
+  color: var(--preto-destaque);
+  text-align: right;
+}
+
+.dica {
+  max-width: 420px;
+  margin: 20px auto 0;
+  padding: 15px;
+  background-color: var(--azul-transp);
+  border: 1px solid var(--formulario-borda);
+  border-radius: 8px;
+  color: var(--azul-titulo);
+  text-align: left;
+  font-size: 14px;
+}
+
+.conteudo-contas {
+  text-align: left;
+}
+
+.conteudo-contas h3 {
+  margin: 25px 0 15px;
+  color: var(--preto-destaque);
+}
+
+.card-conta {
+  padding: 25px;
+  margin-bottom: 18px;
+  border: 1px solid var(--formulario-borda);
+  border-radius: 10px;
+  background-color: var(--brancogelo);
+}
+
+.card-conta h4 {
+  color: var(--preto-destaque);
+  margin-bottom: 12px;
+}
+
+.card-conta p {
+  color: var(--cinza-subtitulo);
+  margin-bottom: 20px;
+}
+
+.card-conta h2 {
+  color: var(--azul-titulo);
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.card-conta ul {
+  margin: 10px 0 15px 25px;
+  color: var(--cinza-subtitulo);
+}
+
+.card-conta li {
+  margin-bottom: 5px;
+}
+
+.card-conta em {
+  color: var(--cinza-subtitulo);
+  font-size: 14px;
+}
+
+.linha-gasto {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  color: var(--cinza-subtitulo);
+}
+
+.saldo-caixa {
+  padding: 25px;
+  margin-bottom: 18px;
+  border: 1px solid var(--formulario-borda);
+  border-radius: 10px;
+  background-color: var(--azul-transp);
+}
+
+.saldo-caixa h4 {
+  color: var(--preto-destaque);
+  margin-bottom: 10px;
+}
+
+.saldo-caixa h2 {
+  text-align: center;
+  color: var(--azul-titulo);
+  font-size: 36px;
+  margin: 20px 0 5px;
+}
+
+.saldo-caixa small {
+  display: block;
+  text-align: center;
+  color: var(--cinza-subtitulo);
+}
+
+.compromisso {
+  padding: 25px;
+  border: 1px solid var(--formulario-borda);
+  border-radius: 10px;
+  background-color: var(--azul-transp);
+}
+
+.compromisso h4 {
+  color: var(--preto-destaque);
+  margin-bottom: 10px;
+}
+
+.saldo-caixa small {
+  display: block;
+  text-align: center;
+  color: #888888;
+}
+
+.compromisso {
+  padding: 25px;
+  border: 1px solid #d8e7f5;
+  border-radius: 10px;
+  background-color: #eef6ff;
+}
+
+.compromisso h4 {
+  color: #222222;
+  margin-bottom: 10px;
+}
+
+.compromisso p {
+  color: #777777;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
