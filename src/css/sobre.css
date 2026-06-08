@@ -5,6 +5,11 @@
   padding: 64px 80px;
 }
 
+.hero-sobre p,
+.faca-parte p {
+  color: var(--branco);
+}
+
 .historia-conteudo {
   display: flex;
   padding: 40px;
@@ -26,8 +31,9 @@
 
 .historia-imagem img {
   width: 450px;
-  border-radius: 12px;
+  border-radius: var(--raio-xl);
 }
+
 .nosso-impacto {
   background-color: var(--brancogelo);
   padding: 80px 0px;
@@ -45,6 +51,7 @@
   display: inline-block;
   width: 300px;
   text-align: center;
+  border-radius: var(--raio-md);
 }
 
 .card-icone {
@@ -59,24 +66,14 @@
 }
 
 .btn-dourado {
-  display: inline-block;
   padding: 12px 32px;
-  background-color: var(--amarelo-logo);
-  color: var(--preto-destaque);
-  font-size: 15px;
   margin-right: 17px;
-  border-radius: 10px;
+  border-radius: var(--raio-lg);
 }
 
 .btn-contorno-branco {
-  display: inline-block;
   padding: 12px 32px;
-  background-color: transparent;
-  color: var(--branco);
-  border-style: solid;
-  border-color: var(--branco);
-  font-size: 15px;
-  border-radius: 10px;
+  border-radius: var(--raio-lg);
 }
 
 .social-item img {

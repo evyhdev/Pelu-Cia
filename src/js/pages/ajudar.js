@@ -1,0 +1,173 @@
+export function renderAjudarPage() {
+  return `
+    <section class="titulo">
+      <h1>Faça a Diferença</h1>
+      <p>Sua doação ajuda a manter nosso projeto ativo, cuidando de mais animais e salvando vidas.</p>
+    </section>
+
+    <section class="card-info">
+      <h2>Cuidando dos Animais do Campus</h2>
+      <p>
+        Os voluntários do Pelu&Cia cuidam diariamente dos animais que vivem no campus da UFC
+        Quixadá. Suas doações garantem ração de qualidade, vacinas, vermifugação e consultas
+        veterinárias para todos eles.
+      </p>
+
+      <a href="#doacao" class="botao-azul">
+        <img src="/images/ajudar/coracao.webp" alt=""> Fazer uma Doação
+      </a>
+    </section>
+
+    <section class="estatisticas">
+      <div class="card-estatistica">
+        <img src="/images/ajudar/valor-atual.webp" alt="">
+        <h3>R$ 977,21</h3>
+        <p>Valor atual em caixa</p>
+      </div>
+
+      <div class="card-estatistica amarelo">
+        <img src="/images/ajudar/transparencia.webp" alt="">
+        <h3>100%</h3>
+        <p>Transparência nas contas</p>
+      </div>
+    </section>
+
+    <section class="doacao" id="doacao">
+      <input type="radio" name="abas-doacao" id="aba-pix" checked>
+      <input type="radio" name="abas-doacao" id="aba-transferencia">
+      <input type="radio" name="abas-doacao" id="aba-contas">
+
+      <div class="abas">
+        <label for="aba-pix">PIX</label>
+        <label for="aba-transferencia">Transferência</label>
+        <label for="aba-contas">Prestação de Contas</label>
+      </div>
+
+      <div class="conteudos-abas">
+        <div class="conteudo conteudo-pix">
+          <h2>Doação via PIX</h2>
+          <p>Forma mais rápida e prática de ajudar</p>
+          <p>Clique no botão abaixo para acessar o link de doação via PIX do NuBank:</p>
+
+          <a href="#" class="botao-azul">Doar via PIX/NuBank</a>
+
+          <p>Ou copie a chave:</p>
+          <div class="chave-pix">https://nubank.com.br/cobrar/xxxxxxxx</div>
+          <button class="botao-copiar">Copiar Link PIX</button>
+          <div class="favorecido">Favorecido: Pelu&Cia - UFC Quixadá</div>
+        </div>
+
+        <div class="conteudo conteudo-transferencia">
+          <h2>Transferência Bancária</h2>
+          <p>Dados para depósito ou transferência</p>
+
+          <div class="dados-banco">
+            <div>
+              <span>Banco:</span>
+              <strong>Nu Pagamentos S.A. (0260)</strong>
+            </div>
+
+            <div>
+              <span>Agência:</span>
+              <strong>XXXXX</strong>
+            </div>
+
+            <div>
+              <span>Conta:</span>
+              <strong>XXXXXXXXX</strong>
+            </div>
+
+            <div>
+              <span>Instituição:</span>
+              <strong>Nu Pagamentos S.A. - Instituição de Pagamento</strong>
+            </div>
+          </div>
+
+          <div class="dica">
+            <strong>Dica:</strong>
+            Após realizar a transferência, envie o comprovante para nosso e-mail
+            <strong>pelu.ciaqx@gmail.com</strong> para que possamos registrar sua contribuição.
+          </div>
+        </div>
+
+        <div class="conteudo conteudo-contas">
+          <h2>Transparência Total</h2>
+          <p>Veja como suas doações estão sendo utilizadas</p>
+
+          <h3>Histórico de Arrecadações</h3>
+
+          <div class="card-conta">
+            <h4>1ª Arrecadação</h4>
+            <p>Valor total arrecadado</p>
+            <h2>R$ 2.456,67</h2>
+            <strong>Utilização:</strong>
+
+            <ul>
+              <li>Primeiros custos do tratamento</li>
+              <li>Ração</li>
+              <li>Deslocamento</li>
+            </ul>
+
+            <em>Valor praticamente todo utilizado no início do projeto.</em>
+          </div>
+
+          <div class="card-conta">
+            <h4>2ª Arrecadação</h4>
+            <p>Valor total arrecadado</p>
+            <h2>R$ 3.310,01</h2>
+            <strong>Gastos até o momento:</strong>
+
+            <div class="linha-gasto">
+              <span>Total gasto:</span>
+              <strong>R$ 2.332,80</strong>
+            </div>
+
+            <div class="linha-gasto">
+              <span>Clínica veterinária:</span>
+              <strong>R$ 1.235,75</strong>
+            </div>
+
+            <div class="linha-gasto">
+              <span>Medicamentos, ração e deslocamento:</span>
+              <strong>R$ 1.097,05</strong>
+            </div>
+
+            <em>
+              Parte dos medicamentos também foi destinada a outros animais após o falecimento da
+              Pretinha.
+            </em>
+          </div>
+
+          <div class="saldo-caixa">
+            <h4>Saldo Atual em Caixa</h4>
+            <p>Valor disponível para cuidados aos animais</p>
+            <h2>R$ 977,21</h2>
+            <small>Atualizado em Abril de 2026</small>
+          </div>
+
+          <div class="compromisso">
+            <h4>Nosso Compromisso</h4>
+            <p>
+              Mantemos total transparência sobre o uso dos recursos doados. Cada centavo é
+              investido no cuidado dos animais do campus, incluindo alimentação, tratamento
+              veterinário, medicamentos e deslocamento quando necessário.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="chamada">
+      <h2>Cada Doação Salva Vidas</h2>
+      <p>
+        Não importa o valor, toda contribuição faz a diferença na vida de um animal que precisa de
+        ajuda. Juntos, podemos fazer mais!
+      </p>
+
+      <div>
+        <a href="#" class="botao-claro">Doar Agora</a>
+        <a href="/voluntario" class="botao-contorno">Seja Voluntário</a>
+      </div>
+    </section>
+  `;
+}

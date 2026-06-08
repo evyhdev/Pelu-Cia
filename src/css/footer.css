@@ -33,6 +33,11 @@
   margin-bottom: 18px;
 }
 
+.rodape p,
+.rodape span {
+  color: var(--branco);
+}
+
 .rodape-links ul {
   list-style: none;
 }
@@ -50,7 +55,7 @@
 }
 
 .rodape-final {
-  font-size: 14px;
+  font-size: var(--texto-sm);
   text-align: center;
   border-top: 1px solid var(--brancogelo);
   padding-top: 22px;

@@ -1,5 +1,13 @@
 .cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   background-color: var(--branco);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.cabecalho-rolado {
+  box-shadow: 0 8px 22px rgba(26, 26, 26, 0.12);
 }
 
 .cabecalho-conteudo {
@@ -21,13 +29,41 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 45px;
-  font-size: 16px;
+  font-size: var(--texto-base);
 }
 
 .menu a {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 8px 0;
+  transition: color 0.2s ease;
+}
+
+.menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  height: 3px;
+  background-color: var(--azul-titulo);
+  border-radius: var(--raio-pilula);
+  opacity: 0;
+  transform: scaleX(0.35);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.menu a:hover,
+.menu a.ativo {
+  color: var(--azul-titulo);
+}
+
+.menu a:hover::after,
+.menu a.ativo::after {
+  opacity: 1;
+  transform: scaleX(1);
 }
 
 .menu img {
@@ -36,10 +72,6 @@
 }
 
 .botao-login {
-  background-color: var(--azul-titulo);
-  color: var(--branco);
   padding: 9px 22px;
-  border-radius: 6px;
-  font-size: 14px;
   text-align: center;
 }

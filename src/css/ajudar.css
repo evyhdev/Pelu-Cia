@@ -4,19 +4,22 @@
 }
 
 .titulo {
+  background-color: var(--azul-titulo);
+  color: var(--branco);
   text-align: center;
-  margin-bottom: 30px;
+  margin: -25px -20px 35px;
+  padding: 45px 20px;
 }
 
 .titulo h1 {
-  color: var(--azul-titulo);
-  font-size: 36px;
+  color: var(--branco);
+  font-size: var(--titulo-lg);
   margin-bottom: 8px;
 }
 
 .titulo p {
-  color: var(--cinza-subtitulo);
-  font-size: 15px;
+  color: var(--branco);
+  font-size: var(--texto-base);
 }
 
 .card-info {
@@ -26,7 +29,7 @@
   text-align: center;
   background-color: var(--azul-transp);
   border: 1px solid var(--formulario-borda);
-  border-radius: 8px;
+  border-radius: var(--raio-md);
 }
 
 .card-info h2 {
@@ -35,18 +38,12 @@
 }
 
 .card-info p {
-  color: var(--cinza-subtitulo);
   max-width: 700px;
   margin: 0 auto 20px;
 }
 
 .botao-azul {
-  display: inline-flex;
-  background-color: var(--azul-titulo);
-  color: var(--branco);
   padding: 15px 20px;
-  border-radius: 5px;
-  font-size: 14px;
 }
 .botao-azul img {
   width: 25px;
@@ -68,7 +65,7 @@
   text-align: center;
   background-color: var(--azul-transp);
   border: 1px solid var(--formulario-borda);
-  border-radius: 8px;
+  border-radius: var(--raio-md);
 }
 .card-estatistica.amarelo {
   background-color: var(--amarelo-transp);
@@ -86,8 +83,7 @@
 }
 
 .card-estatistica p {
-  color: var(--cinza-subtitulo);
-  font-size: 14px;
+  font-size: var(--texto-sm);
 }
 
 .doacao {
@@ -97,7 +93,7 @@
 .abas {
   display: flex;
   background-color: var(--brancogelo);
-  border-radius: 20px;
+  border-radius: var(--raio-pilula);
   margin-bottom: 10px;
   padding: 3px;
 }
@@ -106,19 +102,19 @@
   width: 33.33%;
   text-align: center;
   padding: 8px;
-  font-size: 13px;
+  font-size: var(--texto-xs);
   color: var(--cinza-subtitulo);
 }
 
 .aba.ativa {
   background-color: var(--branco);
-  border-radius: 20px;
+  border-radius: var(--raio-pilula);
 }
 .card-doacao {
   padding: 30px;
   text-align: center;
   border: 1px solid var(--formulario-borda);
-  border-radius: 8px;
+  border-radius: var(--raio-md);
 }
 
 .card-doacao h2 {
@@ -127,16 +123,15 @@
 }
 
 .card-doacao p {
-  color: var(--cinza-subtitulo);
-  font-size: 14px;
+  font-size: var(--texto-sm);
   margin-bottom: 15px;
 }
 
 .chave-pix {
   background-color: var(--brancogelo);
   padding: 15px;
-  border-radius: 6px;
-  font-size: 13px;
+  border-radius: var(--raio-sm);
+  font-size: var(--texto-xs);
   color: var(--cinza-subtitulo);
   margin-bottom: 15px;
 }
@@ -145,17 +140,19 @@
   padding: 10px 20px;
   border: 1px solid var(--brancogelo);
   background-color: var(--azul-transp);
-  border-radius: 5px;
+  border-radius: var(--raio-sm);
   cursor: pointer;
   margin-bottom: 20px;
+  font-family: var(--fonte-principal);
+  font-size: var(--texto-sm);
 }
 .favorecido {
   background-color: var(--amarelo-transp);
   border: 1px solid var(--amarelo-logo);
   color: var(--preto-destaque);
   padding: 12px;
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: var(--raio-sm);
+  font-size: var(--texto-sm);
 }
 .chamada {
   max-width: 1100px;
@@ -163,7 +160,7 @@
   padding: 45px 20px;
   text-align: center;
   background-color: var(--azul-titulo);
-  border-radius: 8px;
+  border-radius: var(--raio-md);
   color: var(--branco);
 }
 
@@ -175,25 +172,16 @@
   max-width: 650px;
   margin: 0 auto 20px;
   line-height: 1.5;
+  color: var(--branco);
 }
 
 .botao-claro {
-  display: inline-block;
-  background-color: var(--amarelo-logo);
-  color: var(--preto-destaque);
   padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
   margin-right: 10px;
 }
 
 .botao-contorno {
-  display: inline-block;
-  color: var(--branco);
   padding: 9px 20px;
-  border: 1px solid var(--branco);
-  border-radius: 5px;
-  text-decoration: none;
 }
 
 .doacao input {
@@ -205,7 +193,7 @@
   margin: 0 auto 10px;
   display: flex;
   background-color: var(--brancogelo);
-  border-radius: 20px;
+  border-radius: var(--raio-pilula);
   padding: 4px;
 }
 
@@ -213,9 +201,9 @@
   width: 33.33%;
   text-align: center;
   padding: 9px;
-  border-radius: 20px;
+  border-radius: var(--raio-pilula);
   cursor: pointer;
-  font-size: 14px;
+  font-size: var(--texto-sm);
   color: var(--preto-destaque);
 }
 
@@ -235,7 +223,7 @@
   padding: 35px;
   text-align: center;
   border: 1px solid var(--formulario-borda);
-  border-radius: 10px;
+  border-radius: var(--raio-lg);
   background-color: var(--branco);
 }
 
@@ -253,7 +241,7 @@
 
 .icone-grande {
   color: var(--azul-titulo);
-  font-size: 42px;
+  font-size: var(--icone-lg);
   margin-bottom: 15px;
 }
 
@@ -263,8 +251,7 @@
 }
 
 .conteudo p {
-  color: var(--cinza-subtitulo);
-  font-size: 15px;
+  font-size: var(--texto-base);
   margin-bottom: 20px;
 }
 
@@ -273,7 +260,7 @@
   margin: 20px auto;
   padding: 20px;
   background-color: var(--brancogelo);
-  border-radius: 8px;
+  border-radius: var(--raio-md);
   text-align: left;
 }
 
@@ -304,10 +291,10 @@
   padding: 15px;
   background-color: var(--azul-transp);
   border: 1px solid var(--formulario-borda);
-  border-radius: 8px;
+  border-radius: var(--raio-md);
   color: var(--azul-titulo);
   text-align: left;
-  font-size: 14px;
+  font-size: var(--texto-sm);
 }
 
 .conteudo-contas {
@@ -323,7 +310,7 @@
   padding: 25px;
   margin-bottom: 18px;
   border: 1px solid var(--formulario-borda);
-  border-radius: 10px;
+  border-radius: var(--raio-lg);
   background-color: var(--brancogelo);
 }
 
@@ -339,7 +326,7 @@
 
 .card-conta h2 {
   color: var(--azul-titulo);
-  font-size: 28px;
+  font-size: var(--titulo-sm);
   margin-bottom: 15px;
 }
 
@@ -354,7 +341,7 @@
 
 .card-conta em {
   color: var(--cinza-subtitulo);
-  font-size: 14px;
+  font-size: var(--texto-sm);
 }
 
 .linha-gasto {
@@ -368,7 +355,7 @@
   padding: 25px;
   margin-bottom: 18px;
   border: 1px solid var(--formulario-borda);
-  border-radius: 10px;
+  border-radius: var(--raio-lg);
   background-color: var(--azul-transp);
 }
 
@@ -380,7 +367,7 @@
 .saldo-caixa h2 {
   text-align: center;
   color: var(--azul-titulo);
-  font-size: 36px;
+  font-size: var(--titulo-lg);
   margin: 20px 0 5px;
 }
 
@@ -393,7 +380,7 @@
 .compromisso {
   padding: 25px;
   border: 1px solid var(--formulario-borda);
-  border-radius: 10px;
+  border-radius: var(--raio-lg);
   background-color: var(--azul-transp);
 }
 
@@ -405,23 +392,23 @@
 .saldo-caixa small {
   display: block;
   text-align: center;
-  color: #888888;
+  color: var(--cinza-subtitulo);
 }
 
 .compromisso {
   padding: 25px;
-  border: 1px solid #d8e7f5;
-  border-radius: 10px;
-  background-color: #eef6ff;
+  border: 1px solid var(--formulario-borda);
+  border-radius: var(--raio-lg);
+  background-color: var(--azul-claro);
 }
 
 .compromisso h4 {
-  color: #222222;
+  color: var(--preto-destaque);
   margin-bottom: 10px;
 }
 
 .compromisso p {
-  color: #777777;
+  color: var(--cinza-texto);
   line-height: 1.6;
   margin-bottom: 0;
 }

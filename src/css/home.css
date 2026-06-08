@@ -23,13 +23,14 @@
 
 .hero-texto h1 {
   max-width: 520px;
-  font-size: 54px;
+  font-size: var(--titulo-hero);
   line-height: 1.15;
 }
 
 .hero-texto p {
   max-width: 520px;
   margin-bottom: 10px;
+  color: var(--branco);
 }
 
 .hero-botoes {
@@ -40,16 +41,7 @@
 
 .btn-dourado,
 .btn-contorno-branco {
-  min-height: 40px;
-  display: inline-flex;
-  align-items: center;
-  border-radius: 6px;
   padding: 0 20px;
-}
-
-.btn-dourado {
-  background-color: var(--amarelo-logo);
-  color: var(--preto-destaque);
 }
 
 .btn-dourado img {
@@ -57,13 +49,9 @@
   margin-right: 10px;
 }
 
-.btn-contorno-branco {
-  border: 1px solid var(--branco);
-}
-
 .hero-imagem {
   max-width: 520px;
-  border-radius: 12px;
+  border-radius: var(--raio-xl);
 }
 
 .parceiros {
@@ -78,11 +66,11 @@
 
 .titulo-secao h2 {
   color: var(--azul-titulo);
-  font-size: 32px;
+  font-size: var(--titulo-md);
 }
 
 .titulo-secao p {
-  color: var(--cinza-subtitulo);
+  color: var(--cinza-texto);
 }
 
 .parceiros-lista {
@@ -99,12 +87,12 @@
   align-items: center;
   justify-content: center;
   background: var(--brancogelo);
-  border-radius: 8px;
-  color: #9ca3af;
+  border-radius: var(--raio-md);
+  color: var(--cinza-card);
 }
 
 .contato {
-  background-color:var(--brancogelo);
+  background-color: var(--brancogelo);
   padding: 58px ;
 }
 
@@ -112,8 +100,8 @@
   max-width: 600px;
   margin: 0 auto;
   background-color: var(--branco);
-  border: 1px solid #dddddd;
-  border-radius: 8px;
+  border: 1px solid var(--cinza-claro);
+  border-radius: var(--raio-md);
   padding: 24px;
 }
 
@@ -125,18 +113,17 @@
 .formulario-contato textarea {
   width: 100%;
   border: 0;
-  border-radius: 6px;
+  border-radius: var(--raio-sm);
   background-color: var(--brancogelo);
   padding: 12px;
   margin-bottom: 18px;
+  font-family: var(--fonte-principal);
+  font-size: var(--texto-base);
 }
 
 
 
 .formulario-contato button {
   width: 100%;
-  background-color: var(--azul-titulo);
-  color: var(--branco);
-  border-radius: 6px;
   padding: 13px;
 }

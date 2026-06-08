@@ -5,6 +5,10 @@
   padding: 64px 80px;
 }
 
+.hero-noticias p {
+  color: var(--branco);
+}
+
 .noticia-destaque {
   display: flex;
   padding: 40px;
@@ -19,7 +23,7 @@
 .imagem-destaque img {
   width: 450px;
   height: 300px;
-  border-radius: 12px;
+  border-radius: var(--raio-xl);
   object-fit: cover;
   display: block;
 }
@@ -36,59 +40,70 @@
   color: var(--azul-titulo);
 }
 
-.texto-destaque p {
-  color: var(--cinza-texto);
-}
-
 .categoria-azul {
   background-color: var(--azul-titulo);
   color: var(--branco);
   padding: 6px 15px;
-  border-radius: 15px;
+  border-radius: var(--raio-pilula);
 }
 
 .data {
   color: var(--cinza-texto);
-  font-size: 14px;
+  font-size: var(--texto-sm);
 }
 
 .btn-azul {
-  display: inline-block;
   padding: 12px 32px;
-  background-color: var(--azul-titulo);
-  color: var(--branco);
-  font-size: 15px;
-  border-radius: 10px;
-  text-decoration: none;
+  border-radius: var(--raio-lg);
 }
 
 .ultimas-noticias {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
   background-color: var(--brancogelo);
   padding: 80px 0px;
   text-align: center;
 }
 
+.ultimas-noticias .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
 .ultimas-noticias h2 {
+  width: 100%;
   color: var(--azul-titulo);
-  font-size: 32px;
-  margin-bottom: 30px;
+  font-size: var(--titulo-md);
+  margin-bottom: 0;
+}
+
+.ultimas-noticias h2::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 4px;
+  margin: 12px auto 0;
+  background-color: var(--azul-titulo);
+  border-radius: var(--raio-pilula);
 }
 
 .card-noticia {
   background-color: var(--branco);
   padding: 20px;
-  display: inline-block;
   width: 340px;
   text-align: left;
-  margin: 15px;
-  border-radius: 12px;
-  vertical-align: top;
+  margin: 0;
+  border-radius: var(--raio-xl);
 }
 
 .card-noticia img {
   width: 100%;
   height: 180px;
-  border-radius: 10px;
+  border-radius: var(--raio-lg);
   object-fit: cover;
   display: block;
 }
@@ -113,8 +128,8 @@
   background-color: var(--amarelo-logo);
   color: var(--preto-destaque);
   padding: 5px 12px;
-  border-radius: 15px;
-  font-size: 13px;
+  border-radius: var(--raio-pilula);
+  font-size: var(--texto-xs);
   display: inline-block;
   margin-top: 12px;
 }
@@ -123,19 +138,7 @@
   color: var(--azul-titulo);
 }
 
-.card-texto p {
-  color: var(--cinza-texto);
-  font-size: 14px;
-}
-
 .btn-card {
-  display: inline-block;
   padding: 10px 24px;
-  background-color: transparent;
-  color: var(--azul-titulo);
-  border-style: solid;
-  border-color: var(--azul-titulo);
-  font-size: 14px;
-  border-radius: 10px;
-  text-decoration: none;
+  border-radius: var(--raio-lg);
 }
