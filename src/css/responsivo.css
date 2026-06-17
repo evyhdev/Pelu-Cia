@@ -1,0 +1,97 @@
+.feedback-form {
+  padding: 14px 18px;
+  border-radius: var(--raio-md);
+  margin-bottom: 20px;
+  font-size: var(--texto-sm);
+  font-weight: 600;
+}
+
+.feedback-sucesso {
+  background-color: #d1fae5;
+  border: 1px solid #34d399;
+  color: #065f46;
+}
+
+.feedback-erro {
+  background-color: #fee2e2;
+  border: 1px solid #f87171;
+  color: #991b1b;
+}
+
+@media (max-width: 768px) {
+  .hero-home {
+    padding: 48px 20px;
+  }
+
+  .hero-texto h1 {
+    font-size: var(--titulo-md);
+  }
+
+  .hero-conteudo {
+    gap: 32px;
+  }
+
+  .hero-foto {
+    display: none;
+  }
+
+  .hero-botoes {
+    flex-direction: column;
+  }
+
+  .hero-botoes a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-noticias,
+  .hero-sobre {
+    padding: 48px 20px;
+  }
+
+  .noticia-destaque {
+    flex-direction: column;
+    padding: 24px 20px;
+    gap: 20px;
+  }
+
+  .imagem-destaque,
+  .imagem-destaque img {
+    width: 100%;
+  }
+
+  .texto-destaque {
+    padding: 0;
+  }
+
+  .historia-conteudo {
+    flex-direction: column;
+    padding: 24px 20px;
+  }
+
+  .historia-imagem,
+  .historia-imagem img {
+    width: 100%;
+  }
+
+  .nosso-impacto {
+    padding: 48px 20px;
+  }
+
+  .impacto-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 0 20px;
+  }
+
+  .card-impacto {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .faca-parte {
+    padding: 48px 20px;
+  }
+}

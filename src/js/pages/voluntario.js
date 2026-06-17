@@ -10,7 +10,6 @@ export function renderVoluntarioPage() {
     <section class="foto-section">
       <div class="foto-gato">
         <img src="https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?auto=format&fit=crop&w=920&q=80" alt="Gato preto olhando entre barras">
-
         <span class="barra barra-1"></span>
         <span class="barra barra-2"></span>
         <span class="barra barra-3"></span>
@@ -26,7 +25,7 @@ export function renderVoluntarioPage() {
         <h2>Formulário de Inscrição</h2>
         <p>Preencha os dados abaixo para se candidatar como voluntário</p>
 
-        <form id="formVoluntario" action="#" method="POST">
+        <form id="formVoluntario">
           <div class="linha-form">
             <div class="campo">
               <label for="nome">Nome Completo *</label>
@@ -71,17 +70,14 @@ export function renderVoluntarioPage() {
                 <input type="radio" name="disponibilidade" value="manha" required>
                 Manhã
               </label>
-
               <label>
                 <input type="radio" name="disponibilidade" value="tarde">
                 Tarde
               </label>
-
               <label>
                 <input type="radio" name="disponibilidade" value="noite">
                 Noite
               </label>
-
               <label>
                 <input type="radio" name="disponibilidade" value="finais-de-semana">
                 Finais de semana
@@ -100,3 +96,42 @@ export function renderVoluntarioPage() {
     </section>
   `;
 }
+
+document.addEventListener('submit', async (event) => {
+  if (event.target && event.target.id === 'formVoluntario') {
+    event.preventDefault(); 
+
+    const disponibilidadeSelecionada = document.querySelector('input[name="disponibilidade"]:checked')?.value;
+
+    const dados = {
+      nome: document.getElementById('nome').value,
+      cpf: document.getElementById('cpf').value,
+      email: document.getElementById('email').value,
+      telefone: document.getElementById('telefone').value,
+      idade: parseInt(document.getElementById('idade').value),
+      profissao: document.getElementById('profissao').value,
+      disponibilidade: disponibilidadeSelecionada
+    };
+
+    try {
+      const resposta = await fetch('http://localhost:3000/api/voluntarios', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dados)
+      });
+
+      const resultado = await resposta.json();
+
+      if (resposta.ok) {
+        alert('Voluntário cadastrado com sucesso!');
+        event.target.reset();
+      } else {
+        alert('Erro ao cadastrar: ' + resultado.message);
+      }
+    } catch (erro) {
+      alert('Não foi possível conectar ao servidor.');
+    }
+  }
+});
