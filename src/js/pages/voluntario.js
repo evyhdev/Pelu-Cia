@@ -1,3 +1,5 @@
+import { apiUrl } from '../services/api.js';
+
 export function renderVoluntarioPage() {
   return `
     <section class="hero">
@@ -114,7 +116,7 @@ document.addEventListener('submit', async (event) => {
     };
 
     try {
-      const resposta = await fetch('http://localhost:3000/api/voluntarios', {
+      const resposta = await fetch(apiUrl('/api/voluntarios'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

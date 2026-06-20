@@ -1,4 +1,5 @@
-import { criarVoluntario, listarVoluntarios, buscarVoluntarioPorId } from './voluntarios.repository.js';
+import { criarVoluntario, listarVoluntarios, buscarVoluntarioPorId } from '../repositories/voluntarios.repository.js';
+import { validarIdNumerico } from '../utils/validations.js';
 
 function validarCPF(cpf) {
   const numeros = cpf.replace(/\D/g, '');
@@ -48,7 +49,8 @@ export async function obterVoluntarios() {
 }
 
 export async function obterVoluntarioPorId(id) {
-  const voluntario = await buscarVoluntarioPorId(id);
+  const idNumerico = validarIdNumerico(id, 'voluntário');
+  const voluntario = await buscarVoluntarioPorId(idNumerico);
   if (!voluntario) throw { status: 404, message: 'Voluntário não encontrado.' };
   return voluntario;
 }

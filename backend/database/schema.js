@@ -1,17 +1,4 @@
-import pg from 'pg';
-import 'dotenv/config';
-
-const { Pool } = pg;
-
-const pool = new Pool({
-  host: process.env.DB_HOST || 'localhost',
-  port: process.env.DB_PORT || 5432,
-  database: process.env.DB_NAME || 'pelucia',
-  user: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD,
-});
-
-export async function initDB() {
+export async function createSchema(pool) {
   await pool.query(`
     CREATE TABLE IF NOT EXISTS voluntarios (
       id SERIAL PRIMARY KEY,
@@ -25,6 +12,17 @@ export async function initDB() {
       criado_em TIMESTAMP DEFAULT NOW()
     )
   `);
-}
 
-export default pool;
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS noticias (
+      id SERIAL PRIMARY KEY,
+      titulo VARCHAR(255) NOT NULL UNIQUE,
+      foto VARCHAR(500) NOT NULL,
+      resumo TEXT NOT NULL,
+      noticia TEXT NOT NULL,
+      data DATE NOT NULL,
+      tipo VARCHAR(80) NOT NULL,
+      criado_em TIMESTAMP DEFAULT NOW()
+    )
+  `);
+}

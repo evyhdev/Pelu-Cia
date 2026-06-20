@@ -1,4 +1,4 @@
-import pool from './db.js';
+import pool from '../config/db.js';
 
 export async function criarVoluntario(dados) {
   const { nome, cpf, email, telefone, idade, profissao, disponibilidade } = dados;
@@ -19,6 +19,9 @@ export async function listarVoluntarios() {
 }
 
 export async function buscarVoluntarioPorId(id) {
-  const result = await pool.query('SELECT * FROM voluntarios WHERE id = $1', [id]);
+  const result = await pool.query(
+    'SELECT id, nome, email, telefone, disponibilidade, criado_em FROM voluntarios WHERE id = $1',
+    [id]
+  );
   return result.rows[0] || null;
 }

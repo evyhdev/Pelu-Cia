@@ -2,7 +2,7 @@ import { initHeaderEffect, renderHeader } from './js/components/header.js';
 import { renderFooter } from './js/components/footer.js';
 import { renderAjudarPage } from './js/pages/ajudar.js';
 import { renderHomePage } from './js/pages/home.js';
-import { renderNoticiasPage } from './js/pages/noticias.js';
+import { initNoticiasPage, renderNoticiasPage } from './js/pages/noticias.js';
 import { renderSobrePage } from './js/pages/sobre.js';
 import { renderVoluntarioPage } from './js/pages/voluntario.js';
 
@@ -23,6 +23,7 @@ const routes = {
   '/noticias': {
     render: renderNoticiasPage,
     title: 'Pelu&Cia - Notícias',
+    afterRender: initNoticiasPage,
   },
   '/sobre': {
     render: renderSobrePage,
@@ -65,6 +66,7 @@ function renderRoute() {
   app.innerHTML = route.render();
   document.title = route.title;
   mountHeader();
+  route.afterRender?.();
 
   if (window.location.hash) {
     document.querySelector(window.location.hash)?.scrollIntoView();

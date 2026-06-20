@@ -1,9 +1,10 @@
-import { Router } from 'express';
-import { cadastrarVoluntario, obterVoluntarios, obterVoluntarioPorId } from './voluntarios.service.js';
+import {
+  cadastrarVoluntario,
+  obterVoluntarioPorId,
+  obterVoluntarios,
+} from '../services/voluntarios.service.js';
 
-const router = Router();
-
-router.post('/', async (req, res) => {
+export async function criarVoluntarioController(req, res) {
   try {
     const voluntario = await cadastrarVoluntario(req.body);
     res.status(201).json({ sucesso: true, data: voluntario });
@@ -17,25 +18,24 @@ router.post('/', async (req, res) => {
 
     res.status(status).json({ sucesso: false, message });
   }
-});
+}
 
-router.get('/', async (req, res) => {
+export async function listarVoluntariosController(req, res) {
   try {
     const voluntarios = await obterVoluntarios();
     res.json({ sucesso: true, data: voluntarios });
   } catch (err) {
     res.status(500).json({ sucesso: false, message: 'Erro ao buscar voluntários.' });
   }
-});
+}
 
-router.get('/:id', async (req, res) => {
+export async function buscarVoluntarioController(req, res) {
   try {
     const voluntario = await obterVoluntarioPorId(req.params.id);
     res.json({ sucesso: true, data: voluntario });
   } catch (err) {
     const status = err.status || 500;
-    res.status(status).json({ sucesso: false, message: err.message });
+    const message = err.message || 'Erro ao buscar voluntário.';
+    res.status(status).json({ sucesso: false, message });
   }
-});
-
-export default router;
+}

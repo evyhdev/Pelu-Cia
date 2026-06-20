@@ -1,63 +1,93 @@
-# 🐾 Pelu&Cia - Sistema de Adoção de Animais
+# Pelu&Cia - Sistema de Adoção de Animais
 
-Bem-vindo ao repositório oficial do projeto **Pelu&Cia**! Este documento orienta a equipe sobre como configurar o ambiente, rodar o projeto e seguir o fluxo de trabalho acadêmico.
+Projeto web da Pelu&Cia com frontend em Vite e backend Node.js/Express usando PostgreSQL.
 
----
+## Pré-requisitos
 
-## 🛠️ Pré-requisitos
+- Node.js 18 ou superior
+- Git
+- Docker e Docker Compose
 
-Antes de começar, certifique-se de ter instalado:
+## Configuração Inicial
 
-1. **Node.js** (Versão 18 ou superior) - [Download](https://nodejs.org/)
-2. **Git** - [Download](https://git-scm.com/)
-3. **VS Code** (Editor sugerido)
+Clone o repositório e instale as dependências:
 
----
-
-## 🚀 Como Rodar o Projeto
-
-1. **Clonar o repositório:**
-   ```bash
-   git clone [https://github.com/evyhdev/Pelu-Cia.git](https://github.com/evyhdev/Pelu-Cia.git)
-
-
-- Entre na pasta do projeto e no terminal do vs code siga a sequência de comandos:
-01. npm install
-02. npm run dev
-Acesse o link que aparecer no terminal (geralmente http://localhost:5173).
-
-**🌳 Fluxo de Trabalho (Branches)**
-Para manter a organização, utilizaremos o seguinte padrão de branches:
-- main: Versão final e estável (produção).
-- developer: Branch de integração. Ninguém sobe código direto aqui.
-- Branches Pessoais: Cada integrante deve criar sua branch a partir da developer.
-
-## 🌳 Fluxo de Trabalho (Branches Pre-existentes)
-
-As branches para cada página já foram criadas! Cada integrante deve trabalhar em sua respectiva branch. Antes de iniciar, é fundamental puxar o código da `main` para ter acesso à Header e ao CSS Global.
-
-### Como começar:
 ```bash
-# 1. Atualize sua lista de branches do servidor
+git clone https://github.com/evyhdev/Pelu-Cia.git
+cd Pelu-Cia
+npm install
+```
+
+Crie o arquivo `.env` a partir do exemplo:
+
+```bash
+cp .env.example .env
+```
+
+Suba o PostgreSQL local:
+
+```bash
+npm run db:up
+```
+
+Inicie o backend:
+
+```bash
+npm run dev:backend
+```
+
+Em outro terminal, inicie o frontend:
+
+```bash
+npm run dev:frontend
+```
+
+Frontend: `http://localhost:5173`
+Backend: `http://localhost:3000`
+
+## Variáveis de Ambiente
+
+```env
+PORT=3000
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=pelucia
+DB_USER=postgres
+DB_PASSWORD=postgres
+VITE_API_BASE_URL=http://localhost:3000
+```
+
+`VITE_API_BASE_URL` define qual backend o frontend deve consumir.
+
+## Scripts
+
+- `npm run dev`: inicia o frontend Vite.
+- `npm run dev:frontend`: inicia o frontend Vite.
+- `npm run dev:backend`: inicia o backend com watch mode.
+- `npm run db:up`: sobe o PostgreSQL local via Docker.
+- `npm run db:down`: derruba o PostgreSQL local.
+- `npm run build`: gera build de produção do frontend.
+- `npm start`: inicia o backend sem watch mode.
+
+## Estrutura
+
+```txt
+backend/              # API Node.js/Express em arquitetura MVC
+public/               # Imagens e ícones públicos
+src/                  # Frontend Vite
+docker-compose.yml    # PostgreSQL local
+```
+
+## Fluxo de Trabalho
+
+- `main`: versão estável.
+- `developer`: branch de integração.
+- Branches pessoais: criadas a partir de `developer`.
+
+Antes de iniciar uma tarefa:
+
+```bash
 git fetch
-
-# 2. Vá para a sua branch (exemplo: pages/adotar)
-git checkout pages/adotar
-
-# 3. Puxe o código da main para dentro da sua branch
+git checkout sua-branch
 git pull origin main
-
-# 4. Agora é só codar! Ao terminar:
-git add .
-git commit -m "feat: descrição da tarefa"
-git push origin pages/adotar
-
-📂 Estrutura de Pastas
-Plaintext
-├── public/              # Imagens e ícones (Caminho: /images ou /icons)
-├── src/
-│   ├── css/             # Arquivos de estilo (global.css e específicos)
-│   ├── pages/           # Páginas internas (adotar.html, etc)
-│   └── main.js          # Arquivo principal JS
-├── index.html           # Página Home
-└── package.json         # Configurações do Vite
+```

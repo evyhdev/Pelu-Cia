@@ -1,3 +1,5 @@
+import { apiUrl } from '../services/api.js';
+
 export function renderNoticiasPage() {
   return `
     <section class="hero-noticias">
@@ -5,81 +7,140 @@ export function renderNoticiasPage() {
       <p>Fique por dentro de tudo que acontece na Pelu&Cia</p>
     </section>
 
-    <section class="noticia-destaque">
-      <div class="imagem-destaque">
-        <img class="foto-principal" src="/images/noticias/pexels-delot-31440943.webp" alt="Cachorro resgatado">
-      </div>
-
-      <div class="texto-destaque">
-        <span class="categoria-azul">Resgate</span>
-        <h2>Resgate bem-sucedido no centro de Quixadá</h2>
-        <p>
-          Nossa equipe realizou mais um resgate importante, salvando 3 cachorrinhos
-          que estavam em situação de risco.
-        </p>
-        <p class="data">5 de abril de 2026 | Equipe Pelu&Cia</p>
-        <a href="#" class="btn-azul">Ler mais →</a>
-      </div>
+    <section class="noticia-destaque" id="noticiaDestaque">
+      <p class="noticias-status">Carregando notícias...</p>
     </section>
 
     <section class="ultimas-noticias">
       <h2>Últimas notícias</h2>
-
-      <div class="card-noticia">
-        <img class="foto-evento" src="/images/noticias/pexels-nandamends-16608221.webp" alt="Feira de adoção">
-        <div class="card-texto">
-          <span class="categoria">Evento</span>
-          <h3>Feira de Adoção no Campus UFC foi um sucesso</h3>
-          <p class="data">28 de março de 2026</p>
-          <p>
-            Evento foi um sucesso! 12 animais encontraram seus lares definitivos
-            durante a feira de adoção.
-          </p>
-          <a href="#" class="btn-card">Ler mais →</a>
-        </div>
-      </div>
-
-      <div class="card-noticia">
-        <img class="foto-historia" src="/images/noticias/pexels-muhammedtubtemur-20744921.webp" alt="Cachorro adotado">
-        <div class="card-texto">
-          <span class="categoria">História</span>
-          <h3>História de Sucesso: Max encontra um lar</h3>
-          <p class="data">15 de março de 2026</p>
-          <p>
-            Conheça a história emocionante de Max, que encontrou uma família
-            amorosa após 8 meses no abrigo.
-          </p>
-          <a href="#" class="btn-card">Ler mais →</a>
-        </div>
-      </div>
-
-      <div class="card-noticia">
-        <img class="foto-saude" src="/images/noticias/pexels-rashi-rashu-2156740634-35587397.webp" alt="Animal sendo cuidado">
-        <div class="card-texto">
-          <span class="categoria">Saúde</span>
-          <h3>Campanha de vacinação beneficia 40 animais</h3>
-          <p class="data">8 de março de 2026</p>
-          <p>
-            Graças às doações, conseguimos vacinar 40 animais contra raiva,
-            cinomose e outras doenças.
-          </p>
-          <a href="#" class="btn-card">Ler mais →</a>
-        </div>
-      </div>
-
-      <div class="card-noticia">
-        <img class="foto-infraestrutura" src="/images/noticias/pexels-karola-g-5713361.webp" alt="Abrigo para animais">
-        <div class="card-texto">
-          <span class="categoria">Infraestrutura</span>
-          <h3>Novo abrigo: expansão das instalações</h3>
-          <p class="data">1 de março de 2026</p>
-          <p>
-            Com apoio da comunidade, expandimos nosso abrigo para acolher
-            mais 20 animais.
-          </p>
-          <a href="#" class="btn-card">Ler mais →</a>
-        </div>
-      </div>
+      <div class="container" id="listaNoticias"></div>
     </section>
+
+    <dialog class="noticia-modal" id="noticiaModal">
+      <button class="noticia-modal-fechar" type="button" data-fechar-noticia aria-label="Fechar notícia">×</button>
+      <div id="noticiaModalConteudo"></div>
+    </dialog>
   `;
 }
+
+const API_NOTICIAS_URL = apiUrl('/api/noticias');
+let noticiasCarregadas = [];
+
+function escaparHTML(valor) {
+  return String(valor ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
+function formatarData(data) {
+  return new Intl.DateTimeFormat('pt-BR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(data));
+}
+
+function renderizarDestaque(noticia) {
+  return `
+    <div class="imagem-destaque">
+      <img class="foto-principal" src="${escaparHTML(noticia.foto)}" alt="${escaparHTML(noticia.titulo)}">
+    </div>
+
+    <div class="texto-destaque">
+      <span class="categoria-azul">${escaparHTML(noticia.tipo)}</span>
+      <h2>${escaparHTML(noticia.titulo)}</h2>
+      <p>${escaparHTML(noticia.resumo)}</p>
+      <p class="data">${formatarData(noticia.data)} | Equipe Pelu&Cia</p>
+      <button class="btn-azul" type="button" data-noticia-id="${noticia.id}">Ler mais</button>
+    </div>
+  `;
+}
+
+function renderizarCard(noticia) {
+  return `
+    <article class="card-noticia">
+      <img src="${escaparHTML(noticia.foto)}" alt="${escaparHTML(noticia.titulo)}">
+      <div class="card-texto">
+        <span class="categoria">${escaparHTML(noticia.tipo)}</span>
+        <h3>${escaparHTML(noticia.titulo)}</h3>
+        <p class="data">${formatarData(noticia.data)}</p>
+        <p>${escaparHTML(noticia.resumo)}</p>
+        <button class="btn-card" type="button" data-noticia-id="${noticia.id}">Ler mais</button>
+      </div>
+    </article>
+  `;
+}
+
+function abrirNoticia(id) {
+  const noticia = noticiasCarregadas.find((item) => item.id === Number(id));
+  const modal = document.querySelector('#noticiaModal');
+  const conteudo = document.querySelector('#noticiaModalConteudo');
+
+  if (!noticia || !modal || !conteudo) {
+    return;
+  }
+
+  conteudo.innerHTML = `
+    <img src="${escaparHTML(noticia.foto)}" alt="${escaparHTML(noticia.titulo)}">
+    <span class="categoria">${escaparHTML(noticia.tipo)}</span>
+    <h2>${escaparHTML(noticia.titulo)}</h2>
+    <p class="data">${formatarData(noticia.data)} | Equipe Pelu&Cia</p>
+    <p>${escaparHTML(noticia.noticia)}</p>
+  `;
+
+  modal.showModal();
+}
+
+async function carregarNoticias() {
+  const destaque = document.querySelector('#noticiaDestaque');
+  const lista = document.querySelector('#listaNoticias');
+
+  if (!destaque || !lista) {
+    return;
+  }
+
+  try {
+    const resposta = await fetch(API_NOTICIAS_URL);
+    const resultado = await resposta.json();
+
+    if (!resposta.ok || !resultado.sucesso) {
+      throw new Error(resultado.message || 'Erro ao buscar notícias.');
+    }
+
+    noticiasCarregadas = resultado.data;
+
+    if (noticiasCarregadas.length === 0) {
+      destaque.innerHTML = '<p class="noticias-status">Nenhuma notícia cadastrada.</p>';
+      lista.innerHTML = '';
+      return;
+    }
+
+    const [noticiaPrincipal, ...ultimasNoticias] = noticiasCarregadas;
+    destaque.innerHTML = renderizarDestaque(noticiaPrincipal);
+    lista.innerHTML = ultimasNoticias.map(renderizarCard).join('');
+  } catch (erro) {
+    destaque.innerHTML = '<p class="noticias-status">Não foi possível carregar as notícias.</p>';
+    lista.innerHTML = '';
+  }
+}
+
+export function initNoticiasPage() {
+  carregarNoticias();
+}
+
+document.addEventListener('click', (event) => {
+  const botaoNoticia = event.target.closest('[data-noticia-id]');
+  const botaoFechar = event.target.closest('[data-fechar-noticia]');
+
+  if (botaoNoticia) {
+    abrirNoticia(botaoNoticia.dataset.noticiaId);
+  }
+
+  if (botaoFechar) {
+    document.querySelector('#noticiaModal')?.close();
+  }
+});
