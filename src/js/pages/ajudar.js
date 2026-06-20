@@ -1,9 +1,12 @@
+import { renderPageHeader } from "../components/titles.js";
+
 export function renderAjudarPage() {
   return `
-    <section class="titulo">
-      <h1>Faça a Diferença</h1>
-      <p>Sua doação ajuda a manter nosso projeto ativo, cuidando de mais animais e salvando vidas.</p>
-    </section>
+    ${renderPageHeader({
+      title: "Faça a Diferença",
+      subtitle:
+        "Sua doação ajuda a manter nosso projeto ativo, cuidando de mais animais e salvando vidas.",
+    })}
 
     <section class="card-info">
       <h2>Cuidando dos Animais do Campus</h2>

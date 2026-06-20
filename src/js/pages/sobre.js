@@ -1,12 +1,12 @@
+import { renderPageHeader } from "../components/titles.js";
+
 export function renderSobrePage() {
   return `
-    <section class="hero-sobre">
-      <h1>Sobre a Pelu&Cia</h1>
-      <p>
-        Um projeto social da Universidade Federal do Ceará - Campus Quixadá,<br>
-        dedicado ao resgate e adoção responsável de animais desde 2021.
-      </p>
-    </section>
+    ${renderPageHeader({
+      title: "Sobre a Pelu&Cia",
+      subtitle:
+        "Um projeto social da Universidade Federal do Ceará - Campus Quixadá, dedicado ao resgate e adoção responsável de animais desde 2021.",
+    })}
 
     <section class="nossa-historia">
       <div class="historia-conteudo">

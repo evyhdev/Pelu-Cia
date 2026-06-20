@@ -3,7 +3,9 @@
   top: 0;
   z-index: 10;
   background-color: var(--branco);
-  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
 
 .cabecalho-rolado {
@@ -52,7 +54,9 @@
   border-radius: var(--raio-pilula);
   opacity: 0;
   transform: scaleX(0.35);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .menu a:hover,

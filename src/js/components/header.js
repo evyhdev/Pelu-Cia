@@ -1,31 +1,36 @@
 const menuItems = [
   {
-    href: '/ajudar',
-    icon: '/icons/ajudar.webp',
-    label: 'Ajudar',
+    href: "/",
+    icon: "/icons/home.png",
+    label: "Início",
   },
   {
-    href: '/noticias',
-    icon: '/icons/noticias.webp',
-    label: 'Notícias',
+    href: "/ajudar",
+    icon: "/icons/ajudar.webp",
+    label: "Ajudar",
   },
   {
-    href: '/voluntario',
-    icon: '/icons/voluntariado.webp',
-    label: 'Voluntariado',
+    href: "/noticias",
+    icon: "/icons/noticias.webp",
+    label: "Notícias",
   },
   {
-    href: '/sobre',
-    icon: '/icons/sobre.webp',
-    label: 'Sobre',
+    href: "/voluntario",
+    icon: "/icons/voluntariado.webp",
+    label: "Voluntariado",
+  },
+  {
+    href: "/sobre",
+    icon: "/icons/sobre.webp",
+    label: "Sobre",
   },
 ];
 
 function isActiveLink(href) {
   const currentPath = window.location.pathname;
 
-  if (currentPath === '/' || currentPath === '/index.html') {
-    return false;
+  if ((currentPath === "/" || currentPath === "/index.html") && href === "/") {
+    return true;
   }
 
   return currentPath === href;
@@ -34,7 +39,7 @@ function isActiveLink(href) {
 export function renderHeader() {
   const links = menuItems
     .map((item) => {
-      const activeClass = isActiveLink(item.href) ? ' class="ativo"' : '';
+      const activeClass = isActiveLink(item.href) ? ' class="ativo"' : "";
 
       return `
         <a href="${item.href}"${activeClass}>
@@ -43,7 +48,7 @@ export function renderHeader() {
         </a>
       `;
     })
-    .join('');
+    .join("");
 
   return `
     <header class="cabecalho">
@@ -63,14 +68,14 @@ export function renderHeader() {
 }
 
 export function initHeaderEffect() {
-  const header = document.querySelector('.cabecalho');
+  const header = document.querySelector(".cabecalho");
 
   if (!header) {
     return;
   }
 
   const updateHeader = () => {
-    header.classList.toggle('cabecalho-rolado', window.scrollY > 10);
+    header.classList.toggle("cabecalho-rolado", window.scrollY > 10);
   };
 
   updateHeader();

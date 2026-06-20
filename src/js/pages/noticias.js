@@ -1,18 +1,21 @@
-import { apiUrl } from '../services/api.js';
+import { renderPageHeader, renderSectionHeading } from "../components/titles.js";
+import { apiUrl } from "../services/api.js";
 
 export function renderNoticiasPage() {
   return `
-    <section class="hero-noticias">
-      <h1>Notícias</h1>
-      <p>Fique por dentro de tudo que acontece na Pelu&Cia</p>
-    </section>
+    ${renderPageHeader({
+      title: "Notícias",
+      subtitle: "Fique por dentro de tudo que acontece na Pelu&Cia",
+    })}
 
     <section class="noticia-destaque" id="noticiaDestaque">
       <p class="noticias-status">Carregando notícias...</p>
     </section>
 
     <section class="ultimas-noticias">
-      <h2>Últimas notícias</h2>
+      ${renderSectionHeading({
+        title: "Últimas notícias",
+      })}
       <div class="container" id="listaNoticias"></div>
     </section>
 
@@ -23,24 +26,24 @@ export function renderNoticiasPage() {
   `;
 }
 
-const API_NOTICIAS_URL = apiUrl('/api/noticias');
+const API_NOTICIAS_URL = apiUrl("/api/noticias");
 let noticiasCarregadas = [];
 
 function escaparHTML(valor) {
-  return String(valor ?? '')
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#039;');
+  return String(valor ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
 function formatarData(data) {
-  return new Intl.DateTimeFormat('pt-BR', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-    timeZone: 'UTC',
+  return new Intl.DateTimeFormat("pt-BR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
   }).format(new Date(data));
 }
 
@@ -77,8 +80,8 @@ function renderizarCard(noticia) {
 
 function abrirNoticia(id) {
   const noticia = noticiasCarregadas.find((item) => item.id === Number(id));
-  const modal = document.querySelector('#noticiaModal');
-  const conteudo = document.querySelector('#noticiaModalConteudo');
+  const modal = document.querySelector("#noticiaModal");
+  const conteudo = document.querySelector("#noticiaModalConteudo");
 
   if (!noticia || !modal || !conteudo) {
     return;
@@ -96,8 +99,8 @@ function abrirNoticia(id) {
 }
 
 async function carregarNoticias() {
-  const destaque = document.querySelector('#noticiaDestaque');
-  const lista = document.querySelector('#listaNoticias');
+  const destaque = document.querySelector("#noticiaDestaque");
+  const lista = document.querySelector("#listaNoticias");
 
   if (!destaque || !lista) {
     return;
@@ -108,23 +111,23 @@ async function carregarNoticias() {
     const resultado = await resposta.json();
 
     if (!resposta.ok || !resultado.sucesso) {
-      throw new Error(resultado.message || 'Erro ao buscar notícias.');
+      throw new Error(resultado.message || "Erro ao buscar notícias.");
     }
 
     noticiasCarregadas = resultado.data;
 
     if (noticiasCarregadas.length === 0) {
       destaque.innerHTML = '<p class="noticias-status">Nenhuma notícia cadastrada.</p>';
-      lista.innerHTML = '';
+      lista.innerHTML = "";
       return;
     }
 
     const [noticiaPrincipal, ...ultimasNoticias] = noticiasCarregadas;
     destaque.innerHTML = renderizarDestaque(noticiaPrincipal);
-    lista.innerHTML = ultimasNoticias.map(renderizarCard).join('');
+    lista.innerHTML = ultimasNoticias.map(renderizarCard).join("");
   } catch (erro) {
     destaque.innerHTML = '<p class="noticias-status">Não foi possível carregar as notícias.</p>';
-    lista.innerHTML = '';
+    lista.innerHTML = "";
   }
 }
 
@@ -132,15 +135,15 @@ export function initNoticiasPage() {
   carregarNoticias();
 }
 
-document.addEventListener('click', (event) => {
-  const botaoNoticia = event.target.closest('[data-noticia-id]');
-  const botaoFechar = event.target.closest('[data-fechar-noticia]');
+document.addEventListener("click", (event) => {
+  const botaoNoticia = event.target.closest("[data-noticia-id]");
+  const botaoFechar = event.target.closest("[data-fechar-noticia]");
 
   if (botaoNoticia) {
     abrirNoticia(botaoNoticia.dataset.noticiaId);
   }
 
   if (botaoFechar) {
-    document.querySelector('#noticiaModal')?.close();
+    document.querySelector("#noticiaModal")?.close();
   }
 });

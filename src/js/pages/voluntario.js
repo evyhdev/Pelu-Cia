@@ -1,13 +1,13 @@
-import { apiUrl } from '../services/api.js';
+import { renderPageHeader } from "../components/titles.js";
+import { apiUrl } from "../services/api.js";
 
 export function renderVoluntarioPage() {
   return `
-    <section class="hero">
-      <div class="container">
-        <h1>Seja um Voluntário</h1>
-        <p>Junte-se à nossa equipe e ajude a transformar vidas! Seu tempo e dedicação fazem toda a diferença.</p>
-      </div>
-    </section>
+    ${renderPageHeader({
+      title: "Seja um Voluntário",
+      subtitle:
+        "Junte-se à nossa equipe e ajude a transformar vidas! Seu tempo e dedicação fazem toda a diferença.",
+    })}
 
     <section class="foto-section">
       <div class="foto-gato">
@@ -99,41 +99,43 @@ export function renderVoluntarioPage() {
   `;
 }
 
-document.addEventListener('submit', async (event) => {
-  if (event.target && event.target.id === 'formVoluntario') {
-    event.preventDefault(); 
+document.addEventListener("submit", async (event) => {
+  if (event.target && event.target.id === "formVoluntario") {
+    event.preventDefault();
 
-    const disponibilidadeSelecionada = document.querySelector('input[name="disponibilidade"]:checked')?.value;
+    const disponibilidadeSelecionada = document.querySelector(
+      'input[name="disponibilidade"]:checked'
+    )?.value;
 
     const dados = {
-      nome: document.getElementById('nome').value,
-      cpf: document.getElementById('cpf').value,
-      email: document.getElementById('email').value,
-      telefone: document.getElementById('telefone').value,
-      idade: parseInt(document.getElementById('idade').value),
-      profissao: document.getElementById('profissao').value,
-      disponibilidade: disponibilidadeSelecionada
+      nome: document.getElementById("nome").value,
+      cpf: document.getElementById("cpf").value,
+      email: document.getElementById("email").value,
+      telefone: document.getElementById("telefone").value,
+      idade: parseInt(document.getElementById("idade").value),
+      profissao: document.getElementById("profissao").value,
+      disponibilidade: disponibilidadeSelecionada,
     };
 
     try {
-      const resposta = await fetch(apiUrl('/api/voluntarios'), {
-        method: 'POST',
+      const resposta = await fetch(apiUrl("/api/voluntarios"), {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(dados)
+        body: JSON.stringify(dados),
       });
 
       const resultado = await resposta.json();
 
       if (resposta.ok) {
-        alert('Voluntário cadastrado com sucesso!');
+        alert("Voluntário cadastrado com sucesso!");
         event.target.reset();
       } else {
-        alert('Erro ao cadastrar: ' + resultado.message);
+        alert("Erro ao cadastrar: " + resultado.message);
       }
     } catch (erro) {
-      alert('Não foi possível conectar ao servidor.');
+      alert("Não foi possível conectar ao servidor.");
     }
   }
 });

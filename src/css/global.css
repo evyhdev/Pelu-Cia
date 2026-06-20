@@ -81,6 +81,32 @@ a {
   margin: 0 auto;
 }
 
+.titulo-pagina {
+  background-color: var(--azul-titulo);
+  color: var(--branco);
+  text-align: center;
+  padding: 45px 20px;
+  margin-bottom: 35px;
+}
+
+.titulo-pagina h1 {
+  color: var(--branco);
+  font-size: var(--titulo-lg);
+  margin-bottom: 8px;
+}
+
+.titulo-pagina p {
+  color: var(--branco);
+  font-size: var(--texto-base);
+  max-width: 840px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.pagina-ajudar .titulo-pagina {
+  margin: -25px -20px 35px;
+}
+
 .btn-dourado,
 .btn-contorno-branco,
 .btn-azul,

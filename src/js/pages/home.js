@@ -1,3 +1,5 @@
+import { renderSectionHeading } from "../components/titles.js";
+
 export function renderHomePage() {
   return `
     <section class="hero-home">
@@ -74,10 +76,10 @@ export function renderHomePage() {
 
     <section class="parceiros">
       <div class="container">
-        <div class="titulo-secao">
-          <h2>Nossos Parceiros</h2>
-          <p>Empresas e instituições que apoiam nossa causa</p>
-        </div>
+        ${renderSectionHeading({
+          title: "Nossos Parceiros",
+          subtitle: "Empresas e instituições que apoiam nossa causa",
+        })}
 
         <div class="parceiros-lista">
           <div class="parceiro-card">Parceiro 1</div>
@@ -90,10 +92,10 @@ export function renderHomePage() {
 
     <section class="contato">
       <div class="container">
-        <div class="titulo-secao">
-          <h2>Entre em Contato</h2>
-          <p>Tem dúvidas? Quer saber mais sobre o projeto? Envie sua mensagem!</p>
-        </div>
+        ${renderSectionHeading({
+          title: "Entre em Contato",
+          subtitle: "Tem dúvidas? Quer saber mais sobre o projeto? Envie sua mensagem!",
+        })}
 
         <form class="formulario-contato">
           <label for="name">Nome</label>
