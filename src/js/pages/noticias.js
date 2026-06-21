@@ -114,7 +114,7 @@ async function carregarNoticias() {
       throw new Error(resultado.message || "Erro ao buscar notícias.");
     }
 
-    noticiasCarregadas = resultado.data;
+    noticiasCarregadas = resultado.data.sort((a, b) => new Date(b.data) - new Date(a.data));
 
     if (noticiasCarregadas.length === 0) {
       destaque.innerHTML = '<p class="noticias-status">Nenhuma notícia cadastrada.</p>';

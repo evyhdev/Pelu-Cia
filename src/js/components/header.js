@@ -61,7 +61,7 @@ export function renderHeader() {
           ${links}
         </nav>
 
-        <a href="#" class="botao-login">Entrar</a>
+        <a href="/login" class="botao-login">Entrar</a>
       </div>
     </header>
   `;

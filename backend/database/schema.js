@@ -17,12 +17,17 @@ export async function createSchema(pool) {
     CREATE TABLE IF NOT EXISTS noticias (
       id SERIAL PRIMARY KEY,
       titulo VARCHAR(255) NOT NULL UNIQUE,
-      foto VARCHAR(500) NOT NULL,
+      foto TEXT NOT NULL,
       resumo TEXT NOT NULL,
       noticia TEXT NOT NULL,
       data DATE NOT NULL,
       tipo VARCHAR(80) NOT NULL,
       criado_em TIMESTAMP DEFAULT NOW()
     )
+  `);
+
+  await pool.query(`
+    ALTER TABLE noticias
+    ALTER COLUMN foto TYPE TEXT
   `);
 }

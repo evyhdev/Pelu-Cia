@@ -107,3 +107,135 @@
   padding: 13px;
   margin-top: 20px;
 }
+
+.login-page,
+.admin-page {
+  background-color: #f3f5fa;
+}
+
+.login-page {
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 390px;
+  background-color: var(--branco);
+  border: 1px solid #e3e5ea;
+  border-radius: var(--raio-lg);
+  padding: 28px;
+}
+
+.login-card img {
+  width: 132px;
+  margin-bottom: 18px;
+}
+
+.login-card h1 {
+  color: var(--azul-titulo);
+  font-size: var(--titulo-md);
+}
+
+.login-card p {
+  margin-bottom: 22px;
+}
+
+.login-card label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.login-card input {
+  width: 100%;
+  border: 1px solid var(--formulario-borda);
+  border-radius: var(--raio-sm);
+  padding: 12px;
+  margin-bottom: 16px;
+  font-family: var(--fonte-principal);
+}
+
+.admin-page {
+  padding: 45px 20px;
+}
+
+.admin-card {
+  max-width: 720px;
+  margin: 0 auto 22px;
+  background-color: var(--branco);
+  border: 1px solid #e3e5ea;
+  border-radius: var(--raio-lg);
+  padding: 24px;
+}
+
+.admin-card h1 {
+  color: var(--azul-titulo);
+  font-size: var(--titulo-md);
+}
+
+.admin-card p {
+  margin-bottom: 20px;
+}
+
+.admin-card label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.admin-card input,
+.admin-card textarea {
+  width: 100%;
+  border: 1px solid var(--formulario-borda);
+  border-radius: var(--raio-sm);
+  padding: 12px;
+  margin-bottom: 16px;
+  font-family: var(--fonte-principal);
+  font-size: var(--texto-base);
+}
+
+.admin-card textarea {
+  resize: vertical;
+}
+
+.admin-feedback {
+  margin-top: 16px;
+  font-weight: 600;
+}
+
+.admin-feedback.sucesso {
+  color: #047857;
+}
+
+.admin-feedback.erro {
+  color: #b91c1c;
+}
+
+.admin-noticia-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid var(--cinza-claro);
+  padding: 14px 0;
+}
+
+.admin-noticia-item p {
+  margin: 4px 0 0;
+  font-size: var(--texto-sm);
+}
+
+.admin-noticia-item button {
+  border: 0;
+  border-radius: var(--raio-sm);
+  background-color: #dc2626;
+  color: var(--branco);
+  padding: 9px 14px;
+  font-family: var(--fonte-principal);
+  font-weight: 600;
+  cursor: pointer;
+}

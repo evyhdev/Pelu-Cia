@@ -1,14 +1,16 @@
 import express from 'express';
 import cors from 'cors';
+import authRouter from './routes/auth.router.js';
 import noticiasRouter from './routes/noticias.router.js';
 import voluntariosRouter from './routes/voluntarios.router.js';
 
 const app = express();
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '5mb' }));
 app.use(express.static('public'));
 
+app.use('/api/auth', authRouter);
 app.use('/api/noticias', noticiasRouter);
 app.use('/api/voluntarios', voluntariosRouter);
 

@@ -1,7 +1,9 @@
 import { initHeaderEffect, renderHeader } from './js/components/header.js';
 import { renderFooter } from './js/components/footer.js';
 import { renderAjudarPage } from './js/pages/ajudar.js';
-import { renderHomePage } from './js/pages/home.js';
+import { initAdminNoticiasPage, renderAdminNoticiasPage } from './js/pages/adminNoticias.js';
+import { initHomePage, renderHomePage } from './js/pages/home.js';
+import { initLoginPage, renderLoginPage } from './js/pages/login.js';
 import { initNoticiasPage, renderNoticiasPage } from './js/pages/noticias.js';
 import { renderSobrePage } from './js/pages/sobre.js';
 import { renderVoluntarioPage } from './js/pages/voluntario.js';
@@ -10,10 +12,12 @@ const routes = {
   '/': {
     render: renderHomePage,
     title: 'Pelu&Cia - Home',
+    afterRender: initHomePage,
   },
   '/index.html': {
     render: renderHomePage,
     title: 'Pelu&Cia - Home',
+    afterRender: initHomePage,
   },
   '/ajudar': {
     render: renderAjudarPage,
@@ -33,6 +37,17 @@ const routes = {
     render: renderVoluntarioPage,
     title: 'Pelu&Cia - Voluntariado',
     pageClass: 'voluntariado-page',
+  },
+  '/login': {
+    render: renderLoginPage,
+    title: 'Pelu&Cia - Login',
+    afterRender: initLoginPage,
+  },
+  '/admin-noticias': {
+    render: renderAdminNoticiasPage,
+    title: 'Pelu&Cia - Admin Notícias',
+    pageClass: 'admin-noticias-page',
+    afterRender: initAdminNoticiasPage,
   },
 };
 
@@ -66,6 +81,7 @@ function renderRoute() {
   app.innerHTML = route.render();
   document.title = route.title;
   mountHeader();
+  mountFooter();
   route.afterRender?.();
 
   if (window.location.hash) {
@@ -104,9 +120,7 @@ mountHeader();
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     renderRoute();
-    mountFooter();
   });
 } else {
   renderRoute();
-  mountFooter();
 }

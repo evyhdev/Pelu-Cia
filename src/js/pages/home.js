@@ -1,4 +1,5 @@
 import { renderSectionHeading } from "../components/titles.js";
+import { apiUrl } from "../services/api.js";
 
 export function renderHomePage() {
   return `
@@ -29,47 +30,8 @@ export function renderHomePage() {
     <section class="ultimas-noticias">
       <div class="container">
         <h2>Últimas Notícias</h2>
-
-        <div class="card-noticia">
-          <img class="foto-evento" src="/images/noticias/pexels-nandamends-16608221.webp" alt="Feira de adoção">
-          <div class="card-texto">
-            <span class="categoria">Evento</span>
-            <h3>Feira de Adoção no Campus UFC foi um sucesso</h3>
-            <p class="data">28 de março de 2026</p>
-            <p>
-              Evento foi um sucesso! 12 animais encontraram seus lares definitivos
-              durante a feira de adoção.
-            </p>
-            <a href="#" class="btn-card">Ler mais →</a>
-          </div>
-        </div>
-
-        <div class="card-noticia">
-          <img class="foto-historia" src="/images/noticias/pexels-muhammedtubtemur-20744921.webp" alt="Cachorro adotado">
-          <div class="card-texto">
-            <span class="categoria">História</span>
-            <h3>História de Sucesso: Max encontra um lar</h3>
-            <p class="data">15 de março de 2026</p>
-            <p>
-              Conheça a história emocionante de Max, que encontrou uma família
-              amorosa após 8 meses no abrigo.
-            </p>
-            <a href="#" class="btn-card">Ler mais →</a>
-          </div>
-        </div>
-
-        <div class="card-noticia">
-          <img class="foto-saude" src="/images/noticias/pexels-rashi-rashu-2156740634-35587397.webp" alt="Animal sendo cuidado">
-          <div class="card-texto">
-            <span class="categoria">Saúde</span>
-            <h3>Campanha de vacinação beneficia 40 animais</h3>
-            <p class="data">8 de março de 2026</p>
-            <p>
-              Graças às doações, conseguimos vacinar 40 animais contra raiva,
-              cinomose e outras doenças.
-            </p>
-            <a href="#" class="btn-card">Ler mais →</a>
-          </div>
+        <div id="homeNoticias" class="home-noticias-lista">
+          <p class="noticias-status">Carregando notícias...</p>
         </div>
       </div>
     </section>
@@ -112,4 +74,67 @@ export function renderHomePage() {
       </div>
     </section>
   `;
+}
+
+function escaparHTML(valor) {
+  return String(valor ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function formatarData(data) {
+  return new Intl.DateTimeFormat("pt-BR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(data));
+}
+
+function renderizarNoticiaHome(noticia) {
+  return `
+    <article class="card-noticia">
+      <img src="${escaparHTML(noticia.foto)}" alt="${escaparHTML(noticia.titulo)}">
+      <div class="card-texto">
+        <span class="categoria">${escaparHTML(noticia.tipo)}</span>
+        <h3>${escaparHTML(noticia.titulo)}</h3>
+        <p class="data">${formatarData(noticia.data)}</p>
+        <p>${escaparHTML(noticia.resumo)}</p>
+        <a href="/noticias" class="btn-card">Ler mais</a>
+      </div>
+    </article>
+  `;
+}
+
+export async function initHomePage() {
+  const lista = document.getElementById("homeNoticias");
+
+  if (!lista) {
+    return;
+  }
+
+  try {
+    const resposta = await fetch(apiUrl("/api/noticias"));
+    const resultado = await resposta.json();
+
+    if (!resposta.ok || !resultado.sucesso) {
+      throw new Error();
+    }
+
+    const ultimasNoticias = resultado.data
+      .sort((a, b) => new Date(b.data) - new Date(a.data))
+      .slice(0, 3);
+
+    if (ultimasNoticias.length === 0) {
+      lista.innerHTML = '<p class="noticias-status">Nenhuma notícia cadastrada.</p>';
+      return;
+    }
+
+    lista.innerHTML = ultimasNoticias.map(renderizarNoticiaHome).join("");
+  } catch (erro) {
+    lista.innerHTML = '<p class="noticias-status">Não foi possível carregar as notícias.</p>';
+  }
 }

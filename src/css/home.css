@@ -54,6 +54,10 @@
   border-radius: var(--raio-xl);
 }
 
+.home-noticias-lista {
+  display: contents;
+}
+
 .parceiros {
   background-color: var(--branco);
   padding: 58px 0;
