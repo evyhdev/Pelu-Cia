@@ -69,32 +69,6 @@ npm run dev:frontend
 - Backend: `http://localhost:3000`
 - Inbox SMTP local: `http://localhost:8025`
 
-## Variáveis de ambiente
-
-Use este modelo no `.env`:
-
-```env
-PORT=3000
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=pelucia
-DB_USER=postgres
-DB_PASSWORD=postgres
-VITE_API_BASE_URL=http://localhost:3000
-ADMIN_EMAIL=evelypaz2010@gmail.com
-ADMIN_PASSWORD=evely123
-ADMIN_TOKEN_SECRET=4f7d89b4a491d4274b5a36df781500e8ebf49a7426d22f52589da40bf5495b75
-MAIL_ENABLED=true
-SMTP_HOST=localhost
-SMTP_PORT=1025
-SMTP_SECURE=false
-SMTP_USER=
-SMTP_PASS=
-MAIL_FROM=nao-responda@pelucia.local
-VOLUNTEER_NOTIFICATION_TO=evelypaz2010@gmail.com
-CONTACT_NOTIFICATION_TO=evelypaz2010@gmail.com
-```
-
 ## Scripts
 
 - `npm run dev`: inicia o frontend Vite.
@@ -152,4 +126,3 @@ O painel administrativo possui:
 - Se o backend não subir, confira se o PostgreSQL está rodando e se o `.env` está correto.
 - Se os e-mails não aparecerem, verifique `http://localhost:8025`.
 - Se o frontend não conseguir acessar a API, confirme `VITE_API_BASE_URL=http://localhost:3000`.
-
