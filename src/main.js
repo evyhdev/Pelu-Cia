@@ -1,6 +1,6 @@
 import { initHeaderEffect, renderHeader } from './js/components/header.js';
 import { renderFooter } from './js/components/footer.js';
-import { renderAjudarPage } from './js/pages/ajudar.js';
+import { initAjudarPage, renderAjudarPage } from './js/pages/ajudar.js';
 import { initAdminNoticiasPage, renderAdminNoticiasPage } from './js/pages/adminNoticias.js';
 import { initHomePage, renderHomePage } from './js/pages/home.js';
 import { initLoginPage, renderLoginPage } from './js/pages/login.js';
@@ -23,6 +23,7 @@ const routes = {
     render: renderAjudarPage,
     title: 'Pelu&Cia - Ajudar',
     pageClass: 'pagina-ajudar',
+    afterRender: initAjudarPage,
   },
   '/noticias': {
     render: renderNoticiasPage,
@@ -43,9 +44,15 @@ const routes = {
     title: 'Pelu&Cia - Login',
     afterRender: initLoginPage,
   },
+  '/admin': {
+    render: renderAdminNoticiasPage,
+    title: 'Pelu&Cia - Painel Administrativo',
+    pageClass: 'admin-noticias-page',
+    afterRender: initAdminNoticiasPage,
+  },
   '/admin-noticias': {
     render: renderAdminNoticiasPage,
-    title: 'Pelu&Cia - Admin Notícias',
+    title: 'Pelu&Cia - Painel Administrativo',
     pageClass: 'admin-noticias-page',
     afterRender: initAdminNoticiasPage,
   },

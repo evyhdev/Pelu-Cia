@@ -30,4 +30,33 @@ export async function createSchema(pool) {
     ALTER TABLE noticias
     ALTER COLUMN foto TYPE TEXT
   `);
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS contas_prestacao (
+      id SERIAL PRIMARY KEY,
+      tipo VARCHAR(20) NOT NULL CHECK (tipo IN ('entrada', 'saida')),
+      descricao TEXT NOT NULL,
+      valor NUMERIC(12, 2) NOT NULL CHECK (valor > 0),
+      data DATE NOT NULL,
+      criado_em TIMESTAMP DEFAULT NOW()
+    )
+  `);
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS configuracoes_doacao (
+      id INTEGER PRIMARY KEY,
+      pix_chave TEXT NOT NULL DEFAULT '',
+      pix_favorecido TEXT NOT NULL DEFAULT '',
+      banco VARCHAR(255) NOT NULL DEFAULT '',
+      agencia VARCHAR(100) NOT NULL DEFAULT '',
+      conta VARCHAR(100) NOT NULL DEFAULT '',
+      instituicao TEXT NOT NULL DEFAULT '',
+      observacao_transferencia TEXT NOT NULL DEFAULT ''
+    )
+  `);
+
+  await pool.query(`
+    ALTER TABLE configuracoes_doacao
+    DROP COLUMN IF EXISTS pix_link
+  `);
 }

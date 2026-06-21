@@ -59,7 +59,7 @@ export function renderHomePage() {
           subtitle: "Tem dúvidas? Quer saber mais sobre o projeto? Envie sua mensagem!",
         })}
 
-        <form class="formulario-contato">
+        <form class="formulario-contato" id="formContatoHome">
           <label for="name">Nome</label>
           <input type="text" id="name" name="name" required>
 
@@ -70,6 +70,7 @@ export function renderHomePage() {
           <textarea id="message" name="message" required></textarea>
 
           <button type="submit">Enviar Mensagem</button>
+          <p class="admin-feedback" id="feedbackContatoHome"></p>
         </form>
       </div>
     </section>
@@ -111,6 +112,8 @@ function renderizarNoticiaHome(noticia) {
 
 export async function initHomePage() {
   const lista = document.getElementById("homeNoticias");
+  const formContato = document.getElementById("formContatoHome");
+  const feedbackContato = document.getElementById("feedbackContatoHome");
 
   if (!lista) {
     return;
@@ -137,4 +140,38 @@ export async function initHomePage() {
   } catch (erro) {
     lista.innerHTML = '<p class="noticias-status">Não foi possível carregar as notícias.</p>';
   }
+
+  formContato?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    feedbackContato.textContent = "Enviando mensagem...";
+    feedbackContato.className = "admin-feedback";
+
+    try {
+      const resposta = await fetch(apiUrl("/api/contato"), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nome: document.getElementById("name").value,
+          email: document.getElementById("email").value,
+          mensagem: document.getElementById("message").value,
+        }),
+      });
+
+      const resultado = await resposta.json();
+
+      if (resposta.ok) {
+        feedbackContato.textContent = "Mensagem enviada com sucesso.";
+        feedbackContato.className = "admin-feedback sucesso";
+        formContato.reset();
+      } else {
+        feedbackContato.textContent = resultado.message || "Erro ao enviar mensagem.";
+        feedbackContato.className = "admin-feedback erro";
+      }
+    } catch (_erro) {
+      feedbackContato.textContent = "Não foi possível conectar ao servidor.";
+      feedbackContato.className = "admin-feedback erro";
+    }
+  });
 }

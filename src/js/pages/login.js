@@ -49,7 +49,7 @@ export function initLoginPage() {
 
       if (resposta.ok) {
         localStorage.setItem("adminToken", resultado.token);
-        window.location.href = "/admin-noticias";
+        window.location.href = "/admin";
       } else {
         feedback.textContent = resultado.message || "Erro ao entrar.";
         feedback.className = "admin-feedback erro";

@@ -146,6 +146,12 @@
   font-family: var(--fonte-principal);
   font-size: var(--texto-sm);
 }
+
+.botao-copiar.copiado {
+  background-color: #d1fae5;
+  border-color: #86efac;
+  color: #166534;
+}
 .favorecido {
   background-color: var(--amarelo-transp);
   border: 1px solid var(--amarelo-logo);
@@ -306,12 +312,40 @@
   color: var(--preto-destaque);
 }
 
+.resumo-contas-publico {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
 .card-conta {
   padding: 25px;
   margin-bottom: 18px;
   border: 1px solid var(--formulario-borda);
   border-radius: var(--raio-lg);
   background-color: var(--brancogelo);
+}
+
+.card-resumo-conta {
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.card-resumo-conta span {
+  color: var(--cinza-subtitulo);
+  font-size: var(--texto-sm);
+}
+
+.card-resumo-conta h4 {
+  margin-top: 10px;
+  color: var(--azul-titulo);
+  font-size: var(--titulo-sm);
+}
+
+.card-resumo-conta.destaque {
+  background-color: var(--amarelo-transp);
+  border-color: var(--amarelo-logo);
 }
 
 .card-conta h4 {
@@ -349,6 +383,44 @@
   justify-content: space-between;
   padding: 4px 0;
   color: var(--cinza-subtitulo);
+}
+
+.card-movimentacao {
+  background-color: var(--branco);
+}
+
+.card-movimentacao.entrada {
+  border-left: 6px solid #16a34a;
+}
+
+.card-movimentacao.saida {
+  border-left: 6px solid #dc2626;
+}
+
+.card-conta-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.tag-movimentacao {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: var(--raio-pilula);
+  background-color: var(--azul-claro);
+  color: var(--azul-titulo);
+  font-size: var(--texto-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.contas-status {
+  text-align: center;
+  color: var(--cinza-subtitulo);
+  padding: 18px 10px;
 }
 
 .saldo-caixa {
@@ -411,4 +483,15 @@
   color: var(--cinza-texto);
   line-height: 1.6;
   margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .resumo-contas-publico {
+    grid-template-columns: 1fr;
+  }
+
+  .card-conta-topo {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

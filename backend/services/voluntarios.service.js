@@ -1,4 +1,5 @@
-import { criarVoluntario, listarVoluntarios, buscarVoluntarioPorId } from '../repositories/voluntarios.repository.js';
+import { buscarVoluntarioPorId, criarVoluntario, listarVoluntarios, removerVoluntario } from '../repositories/voluntarios.repository.js';
+import { enviarEmailNovoVoluntario } from './mail.service.js';
 import { validarIdNumerico } from '../utils/validations.js';
 
 function validarCPF(cpf) {
@@ -18,7 +19,7 @@ function validarCPF(cpf) {
   return resto === parseInt(numeros[10]);
 }
 
-export async function cadastrarVoluntario(dados) {
+function validarDadosVoluntario(dados) {
   const { nome, cpf, email, telefone, idade, profissao, disponibilidade } = dados;
 
   if (!nome || !cpf || !email || !telefone || !idade || !profissao || !disponibilidade) {
@@ -41,7 +42,33 @@ export async function cadastrarVoluntario(dados) {
 
   const cpfFormatado = cpf.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
 
-  return await criarVoluntario({ nome, cpf: cpfFormatado, email, telefone, idade: idadeNum, profissao, disponibilidade });
+  return {
+    nome: String(nome).trim(),
+    cpf: cpfFormatado,
+    email: String(email).trim(),
+    telefone: String(telefone).trim(),
+    idade: idadeNum,
+    profissao: String(profissao).trim(),
+    disponibilidade,
+  };
+}
+
+export async function cadastrarVoluntario(dados) {
+  const voluntarioValidado = validarDadosVoluntario(dados);
+  const voluntarioCriado = await criarVoluntario(voluntarioValidado);
+
+  try {
+    await enviarEmailNovoVoluntario({
+      ...voluntarioValidado,
+      id: voluntarioCriado.id,
+      criado_em: voluntarioCriado.criado_em,
+    });
+  } catch (erro) {
+    await removerVoluntario(voluntarioCriado.id);
+    throw { status: 502, message: 'Não foi possível enviar a notificação por e-mail da inscrição.' };
+  }
+
+  return voluntarioCriado;
 }
 
 export async function obterVoluntarios() {

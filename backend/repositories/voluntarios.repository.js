@@ -5,10 +5,14 @@ export async function criarVoluntario(dados) {
   const result = await pool.query(
     `INSERT INTO voluntarios (nome, cpf, email, telefone, idade, profissao, disponibilidade)
      VALUES ($1, $2, $3, $4, $5, $6, $7)
-     RETURNING id, nome, email, criado_em`,
+     RETURNING id, nome, email, telefone, idade, profissao, disponibilidade, criado_em`,
     [nome, cpf, email, telefone, idade, profissao, disponibilidade]
   );
   return result.rows[0];
+}
+
+export async function removerVoluntario(id) {
+  await pool.query('DELETE FROM voluntarios WHERE id = $1', [id]);
 }
 
 export async function listarVoluntarios() {

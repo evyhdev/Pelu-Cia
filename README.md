@@ -1,51 +1,77 @@
-# Pelu&Cia - Sistema de Adoção de Animais
+# Pelu&Cia
 
-Projeto web da Pelu&Cia com frontend em Vite e backend Node.js/Express usando PostgreSQL.
+Sistema web da Pelu&Cia com frontend em Vite, backend em Node.js/Express e banco PostgreSQL.
 
-## Pré-requisitos
+## O que o sistema faz
+
+- Exibe a home institucional do projeto.
+- Lista e detalha notícias reais do banco de dados.
+- Recebe mensagens da página inicial por e-mail.
+- Recebe inscrições de voluntariado e notifica por e-mail.
+- Mostra a página de doações com chave PIX e dados bancários cadastrados no banco.
+- Exibe a prestação de contas real com entradas e saídas do projeto.
+- Possui painel administrativo para notícias, prestação de contas, doações e voluntários.
+
+## Requisitos
 
 - Node.js 18 ou superior
-- Git
 - Docker e Docker Compose
+- Git
 
-## Configuração Inicial
+## Como rodar do zero
 
-Clone o repositório e instale as dependências:
+1. Clone o repositório.
 
 ```bash
 git clone https://github.com/evyhdev/Pelu-Cia.git
 cd Pelu-Cia
+```
+
+2. Instale as dependências.
+
+```bash
 npm install
 ```
 
-Crie o arquivo `.env` a partir do exemplo:
+3. Crie o arquivo `.env` a partir do exemplo.
 
 ```bash
 cp .env.example .env
 ```
 
-Suba o PostgreSQL local:
+4. Suba a infraestrutura local.
 
 ```bash
-npm run db:up
+npm run infra:up
 ```
 
-Inicie o backend:
+Isso sobe:
+
+- PostgreSQL em `localhost:5432`
+- Mailpit em `http://localhost:8025`
+- SMTP local em `localhost:1025`
+
+5. Inicie o backend.
 
 ```bash
 npm run dev:backend
 ```
 
-Em outro terminal, inicie o frontend:
+6. Em outro terminal, inicie o frontend.
 
 ```bash
 npm run dev:frontend
 ```
 
-Frontend: `http://localhost:5173`
-Backend: `http://localhost:3000`
+7. Abra o sistema.
 
-## Variáveis de Ambiente
+- Frontend: `http://localhost:5173`
+- Backend: `http://localhost:3000`
+- Inbox SMTP local: `http://localhost:8025`
+
+## Variáveis de ambiente
+
+Use este modelo no `.env`:
 
 ```env
 PORT=3000
@@ -55,39 +81,75 @@ DB_NAME=pelucia
 DB_USER=postgres
 DB_PASSWORD=postgres
 VITE_API_BASE_URL=http://localhost:3000
+ADMIN_EMAIL=evelypaz2010@gmail.com
+ADMIN_PASSWORD=evely123
+ADMIN_TOKEN_SECRET=4f7d89b4a491d4274b5a36df781500e8ebf49a7426d22f52589da40bf5495b75
+MAIL_ENABLED=true
+SMTP_HOST=localhost
+SMTP_PORT=1025
+SMTP_SECURE=false
+SMTP_USER=
+SMTP_PASS=
+MAIL_FROM=nao-responda@pelucia.local
+VOLUNTEER_NOTIFICATION_TO=evelypaz2010@gmail.com
+CONTACT_NOTIFICATION_TO=evelypaz2010@gmail.com
 ```
-
-`VITE_API_BASE_URL` define qual backend o frontend deve consumir.
 
 ## Scripts
 
 - `npm run dev`: inicia o frontend Vite.
 - `npm run dev:frontend`: inicia o frontend Vite.
 - `npm run dev:backend`: inicia o backend com watch mode.
-- `npm run db:up`: sobe o PostgreSQL local via Docker.
-- `npm run db:down`: derruba o PostgreSQL local.
-- `npm run build`: gera build de produção do frontend.
 - `npm start`: inicia o backend sem watch mode.
+- `npm run build`: gera o build de produção do frontend.
+- `npm run db:up`: sobe apenas o PostgreSQL.
+- `npm run mail:up`: sobe apenas o Mailpit.
+- `npm run infra:up`: sobe PostgreSQL + Mailpit.
+- `npm run db:down`: derruba a infraestrutura Docker.
+- `npm run infra:down`: derruba a infraestrutura Docker.
 
-## Estrutura
+## Estrutura do projeto
 
 ```txt
-backend/              # API Node.js/Express em arquitetura MVC
-public/               # Imagens e ícones públicos
-src/                  # Frontend Vite
-docker-compose.yml    # PostgreSQL local
+backend/   API Express, regras de negócio e acesso ao PostgreSQL
+src/       Frontend Vite
+public/    Imagens e arquivos públicos
+docs/      Documentação do sistema
+docker-compose.yml  Infra local com PostgreSQL e Mailpit
 ```
 
-## Fluxo de Trabalho
+## Acesso administrativo
 
-- `main`: versão estável.
-- `developer`: branch de integração.
-- Branches pessoais: criadas a partir de `developer`.
+1. Abra `http://localhost:5173/login`
+2. Entre com o e-mail e senha definidos em `.env`
+3. Você será redirecionado para `/admin`
 
-Antes de iniciar uma tarefa:
+O painel administrativo possui:
 
-```bash
-git fetch
-git checkout sua-branch
-git pull origin main
-```
+- cadastro e exclusão de notícias
+- cadastro de movimentações financeiras
+- cadastro dos dados de doação
+- visualização e aprovação das solicitações de voluntariado
+
+## Integrações principais
+
+- Notícias: `GET /api/noticias`
+- Contato da home: `POST /api/contato`
+- Voluntariado: `POST /api/voluntarios`
+- Prestação de contas: `GET /api/contas`
+- Dados de doação: `GET /api/doacoes`
+- Admin de doação: `PUT /api/doacoes`
+
+## Observações importantes
+
+- As mensagens de contato e as inscrições de voluntariado são enviadas por SMTP.
+- Em desenvolvimento, o projeto usa Mailpit no Docker para capturar os e-mails.
+- A página `Ajudar` consome os dados reais de doação e contas do banco.
+- A página `Notícias` e a home consomem o backend real, não dados mockados do frontend.
+
+## Problemas comuns
+
+- Se o backend não subir, confira se o PostgreSQL está rodando e se o `.env` está correto.
+- Se os e-mails não aparecerem, verifique `http://localhost:8025`.
+- Se o frontend não conseguir acessar a API, confirme `VITE_API_BASE_URL=http://localhost:3000`.
+

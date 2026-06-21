@@ -9,7 +9,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "db:up": "docker compose up -d postgres",
+    "mail:up": "docker compose up -d mailtrap",
+    "infra:up": "docker compose up -d postgres mailtrap",
     "db:down": "docker compose down",
+    "infra:down": "docker compose down",
     "dev:backend": "node --watch backend/index.js",
     "start": "node backend/index.js"
   },
@@ -17,6 +20,7 @@
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "nodemailer": "^9.0.1",
     "pg": "^8.21.0"
   },
   "devDependencies": {

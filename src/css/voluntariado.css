@@ -160,21 +160,119 @@
 }
 
 .admin-page {
-  padding: 45px 20px;
+  padding: 45px 20px 70px;
+  background:
+    linear-gradient(180deg, #eef6ff 0%, #f3f5fa 28%, #f3f5fa 100%);
+}
+
+.admin-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.admin-hero-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, var(--azul-titulo) 0%, var(--azul-logo) 100%);
+  color: var(--branco);
+  box-shadow: 0 18px 40px rgba(6, 85, 184, 0.18);
+}
+
+.admin-hero-card h1 {
+  margin: 10px 0 10px;
+  font-size: clamp(28px, 4vw, 40px);
+}
+
+.admin-hero-card p {
+  max-width: 760px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.admin-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 14px;
+  border-radius: var(--raio-pilula);
+  background-color: rgba(255, 255, 255, 0.18);
+  font-size: var(--texto-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.botao-sair-admin {
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: var(--raio-pilula);
+  background-color: rgba(255, 255, 255, 0.14);
+  color: var(--branco);
+  padding: 11px 18px;
+  font-family: var(--fonte-principal);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.botao-sair-admin:hover {
+  background-color: rgba(255, 255, 255, 0.24);
+}
+
+.admin-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-tab {
+  border: 0;
+  border-radius: var(--raio-pilula);
+  background-color: var(--branco);
+  color: var(--azul-titulo);
+  padding: 12px 18px;
+  font-family: var(--fonte-principal);
+  font-size: var(--texto-sm);
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  cursor: pointer;
+}
+
+.admin-tab.ativo {
+  background-color: var(--amarelo-logo);
+  color: var(--preto-destaque);
+}
+
+.admin-panel {
+  display: none;
+}
+
+.admin-panel.ativo {
+  display: block;
+}
+
+.admin-grid-duplo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
 }
 
 .admin-card {
-  max-width: 720px;
-  margin: 0 auto 22px;
+  max-width: none;
+  margin: 0;
   background-color: var(--branco);
   border: 1px solid #e3e5ea;
-  border-radius: var(--raio-lg);
+  border-radius: 20px;
   padding: 24px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
 }
 
-.admin-card h1 {
+.admin-card h1,
+.admin-card h2 {
   color: var(--azul-titulo);
-  font-size: var(--titulo-md);
+  font-size: 28px;
 }
 
 .admin-card p {
@@ -188,7 +286,8 @@
 }
 
 .admin-card input,
-.admin-card textarea {
+.admin-card textarea,
+.admin-card select {
   width: 100%;
   border: 1px solid var(--formulario-borda);
   border-radius: var(--raio-sm);
@@ -196,6 +295,7 @@
   margin-bottom: 16px;
   font-family: var(--fonte-principal);
   font-size: var(--texto-base);
+  background-color: var(--branco);
 }
 
 .admin-card textarea {
@@ -215,21 +315,25 @@
   color: #b91c1c;
 }
 
-.admin-noticia-item {
+.admin-list-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   border-top: 1px solid var(--cinza-claro);
-  padding: 14px 0;
+  padding: 16px 0;
 }
 
-.admin-noticia-item p {
+.admin-list-item p {
   margin: 4px 0 0;
   font-size: var(--texto-sm);
 }
 
-.admin-noticia-item button {
+.admin-list-item-coluna {
+  justify-content: flex-start;
+}
+
+.admin-btn-perigo {
   border: 0;
   border-radius: var(--raio-sm);
   background-color: #dc2626;
@@ -238,4 +342,79 @@
   font-family: var(--fonte-principal);
   font-weight: 600;
   cursor: pointer;
+}
+
+.admin-btn-perigo:hover {
+  background-color: #b91c1c;
+}
+
+.admin-resumo-financeiro {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.admin-resumo-card {
+  padding: 16px;
+  border-radius: 16px;
+  background-color: #f8fbff;
+  border: 1px solid rgba(6, 85, 184, 0.08);
+}
+
+.admin-resumo-card span {
+  display: block;
+  color: var(--cinza-subtitulo);
+  font-size: var(--texto-sm);
+}
+
+.admin-resumo-card strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--azul-titulo);
+  font-size: 24px;
+}
+
+.admin-resumo-card.destaque {
+  background-color: var(--amarelo-transp);
+  border-color: rgba(251, 228, 161, 0.9);
+}
+
+@media (max-width: 920px) {
+  .admin-hero-card {
+    flex-direction: column;
+  }
+
+  .admin-grid-duplo {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-resumo-financeiro {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-page {
+    padding: 28px 14px 48px;
+  }
+
+  .admin-hero-card,
+  .admin-card {
+    padding: 20px;
+  }
+
+  .admin-tabs {
+    gap: 10px;
+  }
+
+  .admin-tab {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .admin-list-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

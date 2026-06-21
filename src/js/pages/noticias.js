@@ -8,15 +8,30 @@ export function renderNoticiasPage() {
       subtitle: "Fique por dentro de tudo que acontece na Pelu&Cia",
     })}
 
-    <section class="noticia-destaque" id="noticiaDestaque">
-      <p class="noticias-status">Carregando notícias...</p>
+    <section class="noticias-destaque-section">
+      <div class="container">
+        ${renderSectionHeading({
+          title: "Última notícia",
+          subtitle: "O destaque mais recente publicado pela equipe Pelu&Cia.",
+          className: "titulo-secao titulo-secao-noticias",
+        })}
+
+        <div class="noticia-destaque" id="noticiaDestaque">
+          <p class="noticias-status">Carregando notícias...</p>
+        </div>
+      </div>
     </section>
 
-    <section class="ultimas-noticias">
-      ${renderSectionHeading({
-        title: "Últimas notícias",
-      })}
-      <div class="container" id="listaNoticias"></div>
+    <section class="noticias-listagem-section">
+      <div class="container">
+        ${renderSectionHeading({
+          title: "Últimas notícias",
+          subtitle: "As 8 publicações mais recentes da Pelu&Cia.",
+          className: "titulo-secao titulo-secao-noticias",
+        })}
+
+        <div class="noticias-grid" id="listaNoticias"></div>
+      </div>
     </section>
 
     <dialog class="noticia-modal" id="noticiaModal">
@@ -56,8 +71,8 @@ function renderizarDestaque(noticia) {
     <div class="texto-destaque">
       <span class="categoria-azul">${escaparHTML(noticia.tipo)}</span>
       <h2>${escaparHTML(noticia.titulo)}</h2>
-      <p>${escaparHTML(noticia.resumo)}</p>
       <p class="data">${formatarData(noticia.data)} | Equipe Pelu&Cia</p>
+      <p>${escaparHTML(noticia.resumo)}</p>
       <button class="btn-azul" type="button" data-noticia-id="${noticia.id}">Ler mais</button>
     </div>
   `;
@@ -122,8 +137,16 @@ async function carregarNoticias() {
       return;
     }
 
-    const [noticiaPrincipal, ...ultimasNoticias] = noticiasCarregadas;
+    const [noticiaPrincipal] = noticiasCarregadas;
+    const ultimasNoticias = noticiasCarregadas.slice(0, 8);
+
     destaque.innerHTML = renderizarDestaque(noticiaPrincipal);
+
+    if (ultimasNoticias.length === 0) {
+      lista.innerHTML = '<p class="noticias-status">Ainda não existem outras notícias publicadas.</p>';
+      return;
+    }
+
     lista.innerHTML = ultimasNoticias.map(renderizarCard).join("");
   } catch (erro) {
     destaque.innerHTML = '<p class="noticias-status">Não foi possível carregar as notícias.</p>';
