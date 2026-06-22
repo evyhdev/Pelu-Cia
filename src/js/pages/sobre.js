@@ -1,19 +1,16 @@
-import { renderPageHeader, renderSectionHeading } from "../components/titles.js";
-
-
+import {
+  renderPageHeader,
+  renderSectionHeading,
+} from "../components/titles.js";
 
 export function renderSobrePage() {
-
   return `
 
     ${renderPageHeader({
-
       title: "Sobre a Pelu&Cia",
 
       subtitle:
-
-        "Um projeto social da Universidade Federal do Ceará - Campus Quixadá, dedicado ao resgate e adoção responsável de animais desde 2021.",
-
+        "Um projeto social da UFC - Campus Quixadá, dedicado ao resgate e adoção responsável de animais desde 2021.",
     })}
 
 
@@ -25,13 +22,11 @@ export function renderSobrePage() {
         <div class="historia-texto">
 
           ${renderSectionHeading({
-
             title: "Nossa História",
 
             subtitle: "Como tudo começou e o que nos move",
 
-            className: "titulo-secao-esquerda" 
-
+            className: "titulo-secao-esquerda",
           })}
 
           <p>
@@ -95,11 +90,10 @@ export function renderSobrePage() {
       <div class="container">
 
         ${renderSectionHeading({
-
           title: "Nosso Impacto",
 
-          subtitle: "Ao longo do tempo, a Pelu&Cia vem causando impactos reais dentro do campus.",
-
+          subtitle:
+            "Ao longo do tempo, a Pelu&Cia vem causando impactos reais dentro do campus.",
         })}
 
 
@@ -193,5 +187,4 @@ export function renderSobrePage() {
     </section>
 
   `;
-
 }
