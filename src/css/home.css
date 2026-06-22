@@ -59,11 +59,6 @@
   display: contents;
 }
 
-.parceiros {
-  background-color: var(--branco);
-  padding: 80px 0;
-}
-
 .titulo-secao {
   text-align: center;
   margin-bottom: 42px;
@@ -78,23 +73,7 @@
   color: var(--cinza-texto);
 }
 
-.parceiros-lista {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 70px;
-}
 
-.parceiro-card {
-  flex: 1;
-  min-width: 180px;
-  height: 110px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--brancogelo);
-  border-radius: var(--raio-md);
-  color: var(--cinza-card);
-}
 
 .contato {
   background-color: var(--brancogelo);

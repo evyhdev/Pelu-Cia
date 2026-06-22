@@ -36,21 +36,7 @@ export function renderHomePage() {
       </div>
     </section>
 
-    <section class="parceiros">
-      <div class="container">
-        ${renderSectionHeading({
-          title: "Nossos Parceiros",
-          subtitle: "Empresas e instituições que apoiam nossa causa",
-        })}
 
-        <div class="parceiros-lista">
-          <div class="parceiro-card">Parceiro 1</div>
-          <div class="parceiro-card">Parceiro 2</div>
-          <div class="parceiro-card">Parceiro 3</div>
-          <div class="parceiro-card">Parceiro 4</div>
-        </div>
-      </div>
-    </section>
 
     <section class="contato">
       <div class="container">
