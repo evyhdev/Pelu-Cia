@@ -230,10 +230,7 @@ export function renderAdminNoticiasPage() {
                     <input type="text" id="nomeVoluntarioAdmin" required>
                   </div>
 
-                  <div class="campo">
-                    <label for="cpfVoluntarioAdmin">CPF</label>
-                    <input type="text" id="cpfVoluntarioAdmin" required>
-                  </div>
+
                 </div>
 
                 <div class="linha-form">
@@ -254,10 +251,7 @@ export function renderAdminNoticiasPage() {
                     <input type="number" id="idadeVoluntarioAdmin" min="16" required>
                   </div>
 
-                  <div class="campo">
-                    <label for="profissaoVoluntarioAdmin">Profissão</label>
-                    <input type="text" id="profissaoVoluntarioAdmin" required>
-                  </div>
+
                 </div>
 
                 <label for="disponibilidadeVoluntarioAdmin">Disponibilidade</label>
@@ -768,11 +762,9 @@ function configurarFormularioVoluntarios() {
     try {
       const dados = {
         nome: document.getElementById("nomeVoluntarioAdmin").value,
-        cpf: document.getElementById("cpfVoluntarioAdmin").value,
         email: document.getElementById("emailVoluntarioAdmin").value,
         telefone: document.getElementById("telefoneVoluntarioAdmin").value,
         idade: document.getElementById("idadeVoluntarioAdmin").value,
-        profissao: document.getElementById("profissaoVoluntarioAdmin").value,
         disponibilidade: document.getElementById("disponibilidadeVoluntarioAdmin").value,
       };
 

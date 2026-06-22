@@ -1,13 +1,13 @@
 import pool from '../config/db.js';
 
 export async function criarVoluntario(dados) {
-  const { nome, cpf, email, telefone, idade, profissao, disponibilidade } = dados;
+  const { nome, email, telefone, idade, disponibilidade } = dados;
   const result = await pool.query(
-    `INSERT INTO voluntarios (nome, cpf, email, telefone, idade, profissao, disponibilidade)
-     VALUES ($1, $2, $3, $4, $5, $6, $7)
-     RETURNING id, nome, email, telefone, idade, profissao, disponibilidade, criado_em`,
-    [nome, cpf, email, telefone, idade, profissao, disponibilidade]
-  );
+  `INSERT INTO voluntarios (nome, email, telefone, idade, disponibilidade)
+   VALUES ($1, $2, $3, $4, $5)
+   RETURNING id, nome, email, telefone, idade, disponibilidade, criado_em`,
+  [nome, email, telefone, idade, disponibilidade]
+);
   return result.rows[0];
 }
 
