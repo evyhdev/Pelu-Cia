@@ -1,4 +1,7 @@
-import { enviarEmailContato } from './mail.service.js';
+import {
+  criarMensagemContato,
+  listarMensagensContato,
+} from '../repositories/contato.repository.js';
 
 function limpar(valor) {
   return String(valor ?? '').trim();
@@ -19,5 +22,9 @@ export async function enviarMensagemContato(dados) {
     throw { status: 400, message: 'E-mail inválido.' };
   }
 
-  await enviarEmailContato({ nome, email, mensagem });
+  return await criarMensagemContato({ nome, email, mensagem });
+}
+
+export async function obterMensagensContato() {
+  return await listarMensagensContato();
 }

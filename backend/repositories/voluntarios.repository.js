@@ -21,11 +21,3 @@ export async function listarVoluntarios() {
   );
   return result.rows;
 }
-
-export async function buscarVoluntarioPorId(id) {
-  const result = await pool.query(
-    'SELECT id, nome, email, telefone, disponibilidade, criado_em FROM voluntarios WHERE id = $1',
-    [id]
-  );
-  return result.rows[0] || null;
-}

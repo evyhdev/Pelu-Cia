@@ -143,7 +143,7 @@ export async function initHomePage() {
 
   formContato?.addEventListener("submit", async (event) => {
     event.preventDefault();
-    feedbackContato.textContent = "Enviando mensagem...";
+    feedbackContato.textContent = "Salvando mensagem...";
     feedbackContato.className = "admin-feedback";
 
     try {
@@ -162,11 +162,11 @@ export async function initHomePage() {
       const resultado = await resposta.json();
 
       if (resposta.ok) {
-        feedbackContato.textContent = "Mensagem enviada com sucesso.";
+        feedbackContato.textContent = "Mensagem salva com sucesso.";
         feedbackContato.className = "admin-feedback sucesso";
         formContato.reset();
       } else {
-        feedbackContato.textContent = resultado.message || "Erro ao enviar mensagem.";
+        feedbackContato.textContent = resultado.message || "Erro ao salvar mensagem.";
         feedbackContato.className = "admin-feedback erro";
       }
     } catch (_erro) {

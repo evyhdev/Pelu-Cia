@@ -1,6 +1,4 @@
-import { buscarVoluntarioPorId, criarVoluntario, listarVoluntarios, removerVoluntario } from '../repositories/voluntarios.repository.js';
-import { enviarEmailNovoVoluntario } from './mail.service.js';
-import { validarIdNumerico } from '../utils/validations.js';
+import { criarVoluntario, listarVoluntarios } from '../repositories/voluntarios.repository.js';
 
 function validarCPF(cpf) {
   const numeros = cpf.replace(/\D/g, '');
@@ -55,29 +53,9 @@ function validarDadosVoluntario(dados) {
 
 export async function cadastrarVoluntario(dados) {
   const voluntarioValidado = validarDadosVoluntario(dados);
-  const voluntarioCriado = await criarVoluntario(voluntarioValidado);
-
-  try {
-    await enviarEmailNovoVoluntario({
-      ...voluntarioValidado,
-      id: voluntarioCriado.id,
-      criado_em: voluntarioCriado.criado_em,
-    });
-  } catch (erro) {
-    await removerVoluntario(voluntarioCriado.id);
-    throw { status: 502, message: 'Não foi possível enviar a notificação por e-mail da inscrição.' };
-  }
-
-  return voluntarioCriado;
+  return await criarVoluntario(voluntarioValidado);
 }
 
 export async function obterVoluntarios() {
   return await listarVoluntarios();
-}
-
-export async function obterVoluntarioPorId(id) {
-  const idNumerico = validarIdNumerico(id, 'voluntário');
-  const voluntario = await buscarVoluntarioPorId(idNumerico);
-  if (!voluntario) throw { status: 404, message: 'Voluntário não encontrado.' };
-  return voluntario;
 }

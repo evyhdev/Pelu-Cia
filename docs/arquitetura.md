@@ -26,12 +26,10 @@ O sistema centraliza comunicação institucional do projeto social, notícias, c
 - `pg`
 - `dotenv`
 - `cors`
-- `nodemailer`
 
 ### Infra local
 
 - PostgreSQL 16 em Docker
-- Mailpit em Docker para capturar e-mails de desenvolvimento
 
 ## Estrutura
 
@@ -91,11 +89,11 @@ flowchart LR
 
 ### Páginas dinâmicas
 
-- `home.js`: carrega notícias e envia mensagem de contato por e-mail.
+- `home.js`: carrega notícias e salva mensagem de contato.
 - `noticias.js`: busca notícias, destaca a principal e abre modal.
 - `ajudar.js`: busca configuração de doação e contas lançadas no banco.
 - `voluntario.js`: envia cadastro de voluntário.
-- `adminNoticias.js`: painel unificado com abas de notícias, contas, doações e voluntários.
+- `adminNoticias.js`: painel unificado com abas de notícias, contas, doações, voluntários e mensagens.
 
 ## Backend
 
@@ -138,12 +136,10 @@ Usada para obter token administrativo assinado via HMAC.
 ### Notícias
 
 - `GET /api/noticias`
-- `GET /api/noticias/:id`
 - `POST /api/noticias`
-- `PUT /api/noticias/:id`
 - `DELETE /api/noticias/:id`
 
-Leitura pública, escrita protegida por admin.
+Listagem pública; criação e exclusão protegidas por admin.
 
 ### Contas de prestação
 
@@ -163,17 +159,17 @@ Guarda chave PIX, favorecido e dados de transferência exibidos na página públ
 ### Contato
 
 - `POST /api/contato`
+- `GET /api/contato`
 
-Recebe nome, e-mail e mensagem da home e envia e-mail ao destinatário configurado.
+Recebe nome, e-mail e mensagem da home e salva no banco. A listagem é protegida por admin.
 
 ### Voluntariado
 
 - `POST /api/voluntarios`
 - `POST /api/voluntarios/admin`
 - `GET /api/voluntarios`
-- `GET /api/voluntarios/:id`
 
-O fluxo público salva o cadastro e dispara notificação por e-mail. O admin consegue listar e cadastrar manualmente.
+O fluxo público salva o cadastro. O admin consegue listar e cadastrar manualmente.
 
 ## Banco de dados
 
@@ -204,6 +200,17 @@ Campos principais:
 - `idade`
 - `profissao`
 - `disponibilidade`
+- `criado_em`
+
+### `mensagens_contato`
+
+Armazena mensagens recebidas pelo formulário de contato da home.
+
+Campos principais:
+
+- `nome`
+- `email`
+- `mensagem`
 - `criado_em`
 
 ### `contas_prestacao`
@@ -240,11 +247,11 @@ O frontend consome `GET /api/noticias` e a home mostra as 3 mais recentes. A pá
 
 ### Contato
 
-A home envia a mensagem para `POST /api/contato`. O backend valida nome, e-mail e mensagem e encaminha o conteúdo por SMTP.
+A home envia a mensagem para `POST /api/contato`. O backend valida nome, e-mail e mensagem e salva o conteúdo em `mensagens_contato`.
 
 ### Voluntariado
 
-O formulário público envia `POST /api/voluntarios`. O backend valida CPF, idade mínima e disponibilidade. Se o SMTP estiver habilitado, a inscrição também gera e-mail de notificação.
+O formulário público envia `POST /api/voluntarios`. O backend valida CPF, idade mínima e disponibilidade e salva a inscrição no banco.
 
 ### Prestação de contas
 
@@ -256,23 +263,7 @@ A aba `Ajudar` busca `GET /api/doacoes` para renderizar chave PIX e dados bancá
 
 ### Admin
 
-O login gera token em memória do navegador via `localStorage`. O painel administrativo unificado usa esse token para publicar notícias, lançar contas, salvar dados de doação e consultar voluntários.
-
-## E-mail e ambiente
-
-O projeto usa `nodemailer` com variáveis de ambiente.
-
-- `MAIL_ENABLED`
-- `SMTP_HOST`
-- `SMTP_PORT`
-- `SMTP_SECURE`
-- `SMTP_USER`
-- `SMTP_PASS`
-- `MAIL_FROM`
-- `VOLUNTEER_NOTIFICATION_TO`
-- `CONTACT_NOTIFICATION_TO`
-
-Em desenvolvimento local, o `docker-compose.yml` expõe Mailpit como caixa SMTP de teste na porta `1025` e interface web em `8025`.
+O login gera token em memória do navegador via `localStorage`. O painel administrativo unificado usa esse token para publicar notícias, lançar contas, salvar dados de doação, consultar voluntários e ler mensagens de contato.
 
 ## Seed e inicialização
 
@@ -286,7 +277,7 @@ Ao iniciar o backend:
 
 - não existe upload multipart real para imagens de notícia; o admin usa `base64` no formulário atual
 - a área pública de parceiros ainda é estática
-- o formulário de contato envia e-mail, mas não persiste mensagens em banco
+- mensagens de contato são persistidas, mas ainda não possuem exclusão ou marcação de leitura
 - não há módulo de adoção ou relatório financeiro avançado
 
 ## Resumo

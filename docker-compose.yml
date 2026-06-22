@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
-      - "5432:5432"
+      - "${DB_PORT:-5434}:5432"
     volumes:
       - pelucia_postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -16,14 +16,6 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
-
-  mailtrap:
-    image: axllent/mailpit:latest
-    container_name: pelucia-mailtrap
-    restart: unless-stopped
-    ports:
-      - "1025:1025"
-      - "8025:8025"
 
 volumes:
   pelucia_postgres_data:

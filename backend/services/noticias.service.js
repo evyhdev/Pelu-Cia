@@ -1,6 +1,4 @@
 import {
-  atualizarNoticia,
-  buscarNoticiaPorId,
   criarNoticia,
   deletarNoticia,
   listarNoticias,
@@ -35,29 +33,6 @@ export async function obterNoticias() {
 export async function cadastrarNoticia(dados) {
   const noticiaValidada = validarNoticia(dados);
   return await criarNoticia(noticiaValidada);
-}
-
-export async function obterNoticiaPorId(id) {
-  const idNumerico = validarIdNumerico(id, 'notícia');
-  const noticia = await buscarNoticiaPorId(idNumerico);
-
-  if (!noticia) {
-    throw { status: 404, message: 'Notícia não encontrada.' };
-  }
-
-  return noticia;
-}
-
-export async function modificarNoticia(id, dados) {
-  const idNumerico = validarIdNumerico(id, 'notícia');
-  const noticiaValidada = validarNoticia(dados);
-  const noticia = await atualizarNoticia(idNumerico, noticiaValidada);
-
-  if (!noticia) {
-    throw { status: 404, message: 'Notícia não encontrada.' };
-  }
-
-  return noticia;
 }
 
 export async function removerNoticia(id) {

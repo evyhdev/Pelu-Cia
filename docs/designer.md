@@ -238,13 +238,13 @@ Limitações observadas:
 - linguagem visual amigável
 - boa separação entre áreas públicas e administrativas
 - CTAs claros nas páginas principais
+- formulário de contato possui confirmação visual e persistência para o admin
 
 ## Fragilidades
 
 - uso frequente de `alert()` em fluxos importantes reduz a qualidade da experiência
-- formulário de contato parece funcional, mas não envia dados
 - parceiros ainda passam sensação de conteúdo incompleto
-- o admin não tem tabela mais rica, filtros ou edição
+- o admin não tem tabela mais rica, filtros, edição ou marcação de leitura para mensagens
 - o login/admin reaproveita menos da identidade emocional do restante do site
 
 ## Recomendações de evolução do design
@@ -253,8 +253,8 @@ Limitações observadas:
 - criar estados visuais de loading, vazio e erro mais consistentes
 - implementar menu mobile dedicado
 - enriquecer a identidade dos parceiros com logos reais
-- transformar o formulário de contato em fluxo real com confirmação visual
-- padronizar melhor a experiência do admin com tabelas, ações e mensagens
+- evoluir a aba `Mensagens` com filtros, exclusão e marcação de leitura
+- padronizar melhor a experiência do admin com tabelas e ações
 - se o upload físico de imagem for ativado, mostrar preview e progresso
 
 ## Resumo do design atual

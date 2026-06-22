@@ -4,6 +4,7 @@ const API_NOTICIAS_URL = apiUrl("/api/noticias");
 const API_CONTAS_URL = apiUrl("/api/contas");
 const API_DOACOES_URL = apiUrl("/api/doacoes");
 const API_VOLUNTARIOS_URL = apiUrl("/api/voluntarios");
+const API_CONTATO_URL = apiUrl("/api/contato");
 
 function obterTokenAdmin() {
   return localStorage.getItem("adminToken");
@@ -32,6 +33,13 @@ function escaparHTML(valor) {
 
 function formatarData(data) {
   return new Date(data).toLocaleDateString("pt-BR", { timeZone: "UTC" });
+}
+
+function formatarDataHora(data) {
+  return new Intl.DateTimeFormat("pt-BR", {
+    dateStyle: "short",
+    timeStyle: "short",
+  }).format(new Date(data));
 }
 
 function formatarMoeda(valor) {
@@ -91,6 +99,7 @@ export function renderAdminNoticiasPage() {
           <button type="button" class="admin-tab ativo" data-admin-tab="noticias">Notícias</button>
           <button type="button" class="admin-tab" data-admin-tab="contas">Prestação de contas</button>
           <button type="button" class="admin-tab" data-admin-tab="voluntarios">Voluntários</button>
+          <button type="button" class="admin-tab" data-admin-tab="mensagens">Mensagens</button>
         </div>
 
         <section class="admin-panel ativo" data-admin-panel="noticias">
@@ -271,6 +280,16 @@ export function renderAdminNoticiasPage() {
               <div id="listaAdminVoluntarios">
                 <p class="admin-feedback">Carregando voluntários...</p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="admin-panel" data-admin-panel="mensagens">
+          <div class="admin-card">
+            <h2>Mensagens recebidas</h2>
+            <p>Mensagens enviadas pelo formulário de contato da página inicial.</p>
+            <div id="listaAdminMensagens">
+              <p class="admin-feedback">Carregando mensagens...</p>
             </div>
           </div>
         </section>
@@ -491,6 +510,53 @@ async function carregarVoluntariosAdmin() {
       .join("");
   } catch (erro) {
     lista.innerHTML = '<p class="admin-feedback erro">Não foi possível carregar os voluntários.</p>';
+  }
+}
+
+async function carregarMensagensAdmin() {
+  const lista = document.getElementById("listaAdminMensagens");
+
+  if (!lista) {
+    return;
+  }
+
+  try {
+    const resposta = await fetch(API_CONTATO_URL, {
+      headers: obterCabecalhosAdmin(),
+    });
+
+    if (tratarErroAutenticacao(resposta.status)) {
+      return;
+    }
+
+    const resultado = await resposta.json();
+
+    if (!resposta.ok || !resultado.sucesso) {
+      throw new Error(resultado.message);
+    }
+
+    const mensagens = resultado.data;
+
+    if (mensagens.length === 0) {
+      lista.innerHTML = '<p class="admin-feedback">Nenhuma mensagem recebida.</p>';
+      return;
+    }
+
+    lista.innerHTML = mensagens
+      .map(
+        (mensagem) => `
+          <div class="admin-list-item admin-list-item-coluna">
+            <div>
+              <strong>${escaparHTML(mensagem.nome)}</strong>
+              <p>${escaparHTML(mensagem.email)} • ${formatarDataHora(mensagem.criado_em)}</p>
+              <p>${escaparHTML(mensagem.mensagem)}</p>
+            </div>
+          </div>
+        `
+      )
+      .join("");
+  } catch (erro) {
+    lista.innerHTML = '<p class="admin-feedback erro">Não foi possível carregar as mensagens.</p>';
   }
 }
 
@@ -746,4 +812,5 @@ export function initAdminNoticiasPage() {
   carregarContasAdmin();
   carregarDadosDoacaoAdmin();
   carregarVoluntariosAdmin();
+  carregarMensagensAdmin();
 }

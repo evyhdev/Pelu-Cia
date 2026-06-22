@@ -59,4 +59,14 @@ export async function createSchema(pool) {
     ALTER TABLE configuracoes_doacao
     DROP COLUMN IF EXISTS pix_link
   `);
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS mensagens_contato (
+      id SERIAL PRIMARY KEY,
+      nome VARCHAR(255) NOT NULL,
+      email VARCHAR(255) NOT NULL,
+      mensagem TEXT NOT NULL,
+      criado_em TIMESTAMP DEFAULT NOW()
+    )
+  `);
 }

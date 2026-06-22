@@ -1,17 +1,17 @@
 import {
   cadastrarNoticia,
-  modificarNoticia,
-  obterNoticiaPorId,
   obterNoticias,
   removerNoticia,
-} from '../services/noticias.service.js';
+} from "../services/noticias.service.js";
 
 export async function listarNoticiasController(req, res) {
   try {
     const noticias = await obterNoticias();
     res.json({ sucesso: true, data: noticias });
   } catch (err) {
-    res.status(500).json({ sucesso: false, message: 'Erro ao buscar notícias.' });
+    res
+      .status(500)
+      .json({ sucesso: false, message: "Erro ao buscar notícias." });
   }
 }
 
@@ -21,37 +21,12 @@ export async function criarNoticiaController(req, res) {
     res.status(201).json({ sucesso: true, data: noticia });
   } catch (err) {
     const status = err.status || 500;
-    const message = err.message || 'Erro ao criar notícia.';
+    const message = err.message || "Erro ao criar notícia.";
 
-    if (err.code === '23505') {
-      return res.status(409).json({ sucesso: false, message: 'Título de notícia já cadastrado.' });
-    }
-
-    res.status(status).json({ sucesso: false, message });
-  }
-}
-
-export async function buscarNoticiaController(req, res) {
-  try {
-    const noticia = await obterNoticiaPorId(req.params.id);
-    res.json({ sucesso: true, data: noticia });
-  } catch (err) {
-    const status = err.status || 500;
-    const message = err.message || 'Erro ao buscar notícia.';
-    res.status(status).json({ sucesso: false, message });
-  }
-}
-
-export async function atualizarNoticiaController(req, res) {
-  try {
-    const noticia = await modificarNoticia(req.params.id, req.body);
-    res.json({ sucesso: true, data: noticia });
-  } catch (err) {
-    const status = err.status || 500;
-    const message = err.message || 'Erro ao modificar notícia.';
-
-    if (err.code === '23505') {
-      return res.status(409).json({ sucesso: false, message: 'Título de notícia já cadastrado.' });
+    if (err.code === "23505") {
+      return res
+        .status(409)
+        .json({ sucesso: false, message: "Título de notícia já cadastrado." });
     }
 
     res.status(status).json({ sucesso: false, message });
@@ -64,7 +39,7 @@ export async function deletarNoticiaController(req, res) {
     res.status(204).send();
   } catch (err) {
     const status = err.status || 500;
-    const message = err.message || 'Erro ao deletar notícia.';
+    const message = err.message || "Erro ao deletar notícia.";
     res.status(status).json({ sucesso: false, message });
   }
 }

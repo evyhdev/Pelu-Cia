@@ -27,14 +27,17 @@ Configure as variáveis abaixo em um arquivo `.env` na raiz do projeto:
 ```txt
 PORT=3000
 DB_HOST=localhost
-DB_PORT=5432
+DB_PORT=5434
 DB_NAME=pelucia
 DB_USER=postgres
 DB_PASSWORD=postgres
+ADMIN_EMAIL=admin@pelucia.com
+ADMIN_PASSWORD=admin123
+ADMIN_TOKEN_SECRET=pelucia-dev-secret
 VITE_API_BASE_URL=http://localhost:3000
 ```
 
-Ao iniciar o backend, as tabelas `voluntarios` e `noticias` são criadas se ainda não existirem.
+Ao iniciar o backend, as tabelas `voluntarios`, `noticias`, `contas_prestacao`, `configuracoes_doacao` e `mensagens_contato` são criadas se ainda não existirem.
 A tabela `noticias` também recebe notícias simuladas iniciais, sem duplicar títulos já existentes.
 
 ## Contrato Geral
@@ -80,6 +83,28 @@ Respostas de erro:
 
 O campo `foto` pode ser uma URL absoluta ou um caminho público do frontend, como `/images/noticias/noticia-1.webp`.
 
+## Rotas De Autenticação
+
+### Login administrativo
+
+```http
+POST /api/auth/login
+Content-Type: application/json
+```
+
+```json
+{
+  "email": "admin@pelucia.com",
+  "senha": "admin123"
+}
+```
+
+Resposta `200`: retorna o token usado nas rotas administrativas.
+
+Erros esperados:
+
+- `401`: credenciais inválidas.
+
 ## Rotas De Notícias
 
 ### Listar notícias
@@ -108,27 +133,11 @@ Resposta `200`:
 }
 ```
 
-### Buscar notícia por ID
-
-```http
-GET /api/noticias/:id
-```
-
-Resposta `200`: retorna uma entidade `Noticia`.
-
-Resposta `404`:
-
-```json
-{
-  "sucesso": false,
-  "message": "Notícia não encontrada."
-}
-```
-
 ### Criar notícia
 
 ```http
 POST /api/noticias
+Authorization: Bearer token-admin
 Content-Type: application/json
 ```
 
@@ -148,36 +157,58 @@ Resposta `201`: retorna a notícia criada.
 Erros esperados:
 
 - `400`: campo obrigatório ausente ou data inválida.
-- `409`: título já cadastrado.
-
-### Modificar notícia
-
-```http
-PUT /api/noticias/:id
-Content-Type: application/json
-```
-
-O corpo da requisição usa os mesmos campos do cadastro.
-
-Resposta `200`: retorna a notícia modificada.
-
-Erros esperados:
-
-- `400`: campo obrigatório ausente ou data inválida.
-- `404`: notícia não encontrada.
+- `401`: token administrativo ausente ou inválido.
 - `409`: título já cadastrado.
 
 ### Deletar notícia
 
 ```http
 DELETE /api/noticias/:id
+Authorization: Bearer token-admin
 ```
 
 Retorna `204 No Content` quando a notícia é removida com sucesso.
 
 Erro esperado:
 
+- `401`: token administrativo ausente ou inválido.
 - `404`: notícia não encontrada.
+
+## Rotas De Contato
+
+### Criar mensagem
+
+```http
+POST /api/contato
+Content-Type: application/json
+```
+
+```json
+{
+  "nome": "Nome completo",
+  "email": "email@exemplo.com",
+  "mensagem": "Mensagem enviada pelo formulário."
+}
+```
+
+Resposta `201`: retorna a mensagem salva.
+
+Erros esperados:
+
+- `400`: campos obrigatórios ausentes ou e-mail inválido.
+
+### Listar mensagens
+
+```http
+GET /api/contato
+Authorization: Bearer token-admin
+```
+
+Resposta `200`: retorna as mensagens recebidas em ordem decrescente de criação.
+
+Erro esperado:
+
+- `401`: token administrativo ausente ou inválido.
 
 ## Rotas De Voluntários
 
@@ -230,10 +261,100 @@ Erros esperados:
 
 ```http
 GET /api/voluntarios
+Authorization: Bearer token-admin
 ```
 
-### Buscar voluntário por ID
+Resposta `200`: retorna os voluntários cadastrados em ordem decrescente de criação.
+
+Erro esperado:
+
+- `401`: token administrativo ausente ou inválido.
+
+### Criar voluntário pelo admin
 
 ```http
-GET /api/voluntarios/:id
+POST /api/voluntarios/admin
+Authorization: Bearer token-admin
+Content-Type: application/json
 ```
+
+Usa o mesmo corpo e as mesmas validações de `POST /api/voluntarios`.
+
+## Rotas De Prestação De Contas
+
+### Listar contas
+
+```http
+GET /api/contas
+```
+
+Resposta `200`: retorna as movimentações financeiras em ordem decrescente de data.
+
+### Criar conta
+
+```http
+POST /api/contas
+Authorization: Bearer token-admin
+Content-Type: application/json
+```
+
+```json
+{
+  "tipo": "entrada",
+  "descricao": "Doação recebida",
+  "valor": 100.5,
+  "data": "2026-06-20"
+}
+```
+
+Erros esperados:
+
+- `400`: tipo, descrição, valor ou data inválidos.
+- `401`: token administrativo ausente ou inválido.
+
+### Deletar conta
+
+```http
+DELETE /api/contas/:id
+Authorization: Bearer token-admin
+```
+
+Erros esperados:
+
+- `401`: token administrativo ausente ou inválido.
+- `404`: conta não encontrada.
+
+## Rotas De Doações
+
+### Obter dados de doação
+
+```http
+GET /api/doacoes
+```
+
+Resposta `200`: retorna chave PIX, favorecido, banco, agência, conta, instituição e observação de transferência.
+
+### Salvar dados de doação
+
+```http
+PUT /api/doacoes
+Authorization: Bearer token-admin
+Content-Type: application/json
+```
+
+```json
+{
+  "pixChave": "pix@exemplo.com",
+  "pixFavorecido": "Pelu&Cia",
+  "banco": "Banco Exemplo",
+  "agencia": "0001",
+  "conta": "12345-6",
+  "instituicao": "Projeto Pelu&Cia",
+  "observacaoTransferencia": "Envie o comprovante para confirmação."
+}
+```
+
+Erros esperados:
+
+- `400`: campos obrigatórios ausentes.
+- `401`: token administrativo ausente ou inválido.
