@@ -34,10 +34,7 @@ export function renderVoluntarioPage() {
               <input type="text" id="nome" name="nome" required>
             </div>
 
-            <div class="campo">
-              <label for="cpf">CPF *</label>
-              <input type="text" id="cpf" name="cpf" required>
-            </div>
+            
           </div>
 
           <div class="linha-form">
@@ -58,10 +55,7 @@ export function renderVoluntarioPage() {
               <input type="number" id="idade" name="idade" min="16" required>
             </div>
 
-            <div class="campo">
-              <label for="profissao">Profissão *</label>
-              <input type="text" id="profissao" name="profissao" required>
-            </div>
+           
           </div>
 
           <div class="campo">
@@ -109,11 +103,9 @@ document.addEventListener("submit", async (event) => {
 
     const dados = {
       nome: document.getElementById("nome").value,
-      cpf: document.getElementById("cpf").value,
       email: document.getElementById("email").value,
       telefone: document.getElementById("telefone").value,
       idade: parseInt(document.getElementById("idade").value),
-      profissao: document.getElementById("profissao").value,
       disponibilidade: disponibilidadeSelecionada,
     };
 

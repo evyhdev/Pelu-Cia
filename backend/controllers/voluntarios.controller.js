@@ -12,7 +12,7 @@ export async function criarVoluntarioController(req, res) {
     const message = err.message || 'Erro interno do servidor.';
 
     if (err.code === '23505') {
-      return res.status(409).json({ sucesso: false, message: 'CPF ou e-mail já cadastrado.' });
+      return res.status(409).json({ sucesso: false, message: 'E-mail já cadastrado.' });
     }
 
     res.status(status).json({ sucesso: false, message });
