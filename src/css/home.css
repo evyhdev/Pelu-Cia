@@ -2,13 +2,14 @@
   background-color: var(--azul-titulo);
   color: var(--branco);
   padding: 80px;
+  margin-bottom: 40px;
 }
 
 .hero-conteudo {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 100px;
+  gap: 60px;
 }
 
 .hero-texto {
@@ -29,13 +30,13 @@
 
 .hero-texto p {
   max-width: 520px;
-  margin-bottom: 10px;
+  margin-bottom: 24px;
   color: var(--branco);
 }
 
 .hero-botoes {
   display: flex;
-  gap: 14px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
@@ -60,7 +61,7 @@
 
 .parceiros {
   background-color: var(--branco);
-  padding: 58px 0;
+  padding: 80px 0;
 }
 
 .titulo-secao {
@@ -97,7 +98,7 @@
 
 .contato {
   background-color: var(--brancogelo);
-  padding: 58px ;
+  padding: 80px;
 }
 
 .formulario-contato {
@@ -130,4 +131,28 @@
 .formulario-contato button {
   width: 100%;
   padding: 13px;
+}
+
+.ultimas-noticias {
+  padding: 80px 0;
+  background-color: var(--branco);
+}
+
+.ultimas-noticias h2 {
+  text-align: center;
+  color: var(--azul-titulo);
+  font-size: var(--titulo-md);
+  margin-bottom: 50px;
+}
+
+.home-noticias-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.noticias-status {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--cinza-texto);
 }

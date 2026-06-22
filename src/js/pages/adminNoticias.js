@@ -326,7 +326,14 @@ async function carregarNoticiasAdmin() {
   }
 
   try {
-    const resposta = await fetch(API_NOTICIAS_URL);
+    const resposta = await fetch(API_NOTICIAS_URL, {
+      headers: obterCabecalhosAdmin(),
+    });
+
+    if (tratarErroAutenticacao(resposta.status)) {
+      return;
+    }
+
     const resultado = await resposta.json();
 
     if (!resposta.ok || !resultado.sucesso) {
