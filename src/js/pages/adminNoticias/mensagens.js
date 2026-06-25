@@ -1,8 +1,11 @@
 import {
   API_CONTATO_URL,
+  definirFeedback,
   escaparHTML,
   formatarDataHora,
+  lerRespostaJson,
   obterCabecalhosAdmin,
+  prepararConfirmacaoExclusao,
   tratarErroAutenticacao,
 } from "./shared.js";
 
@@ -15,6 +18,7 @@ export function renderMensagensAdminPanel() {
         <div id="listaAdminMensagens">
           <p class="admin-feedback">Carregando mensagens...</p>
         </div>
+        <p class="admin-feedback" id="feedbackMensagem"></p>
       </div>
     </section>
   `;
@@ -52,11 +56,20 @@ async function carregarMensagensAdmin() {
     lista.innerHTML = mensagens
       .map(
         (mensagem) => `
-          <div class="admin-list-item admin-list-item-coluna">
+          <div class="admin-list-item admin-list-item-coluna ${mensagem.lida ? "mensagem-lida" : "mensagem-nao-lida"}">
             <div>
               <strong>${escaparHTML(mensagem.nome)}</strong>
+              <span class="admin-status-mensagem">${mensagem.lida ? "Lida" : "Nova"}</span>
               <p>${escaparHTML(mensagem.email)} • ${formatarDataHora(mensagem.criado_em)}</p>
               <p>${escaparHTML(mensagem.mensagem)}</p>
+            </div>
+            <div class="admin-list-actions">
+              ${
+                mensagem.lida
+                  ? ""
+                  : `<button type="button" class="admin-btn-secundario" data-marcar-lida="${mensagem.id}">Marcar como lida</button>`
+              }
+              <button type="button" class="admin-btn-perigo" data-excluir-mensagem="${mensagem.id}">Excluir</button>
             </div>
           </div>
         `
@@ -69,4 +82,55 @@ async function carregarMensagensAdmin() {
 
 export function initMensagensAdminPanel() {
   carregarMensagensAdmin();
+  document.getElementById("listaAdminMensagens")?.addEventListener("click", async (event) => {
+    const botaoMarcarLida = event.target.closest("[data-marcar-lida]");
+    const botaoExcluir = event.target.closest("[data-excluir-mensagem]");
+
+    try {
+      if (botaoMarcarLida) {
+        const resposta = await fetch(`${API_CONTATO_URL}/${botaoMarcarLida.dataset.marcarLida}/lida`, {
+          method: "PATCH",
+          headers: obterCabecalhosAdmin(),
+        });
+        const resultado = await lerRespostaJson(resposta);
+
+        if (tratarErroAutenticacao(resposta.status)) {
+          return;
+        }
+
+        if (!resposta.ok) {
+          throw new Error(resultado.message || "Não foi possível marcar a mensagem como lida.");
+        }
+
+        definirFeedback("feedbackMensagem", "Mensagem marcada como lida.", "sucesso");
+        carregarMensagensAdmin();
+        return;
+      }
+
+      if (botaoExcluir) {
+        if (!prepararConfirmacaoExclusao(botaoExcluir)) {
+          return;
+        }
+
+        const resposta = await fetch(`${API_CONTATO_URL}/${botaoExcluir.dataset.excluirMensagem}`, {
+          method: "DELETE",
+          headers: obterCabecalhosAdmin(),
+        });
+        const resultado = await lerRespostaJson(resposta);
+
+        if (tratarErroAutenticacao(resposta.status)) {
+          return;
+        }
+
+        if (!resposta.ok) {
+          throw new Error(resultado.message || "Não foi possível excluir a mensagem.");
+        }
+
+        definirFeedback("feedbackMensagem", "Mensagem excluída com sucesso.", "sucesso");
+        carregarMensagensAdmin();
+      }
+    } catch (erro) {
+      definirFeedback("feedbackMensagem", erro.message || "Não foi possível processar a mensagem.", "erro");
+    }
+  });
 }

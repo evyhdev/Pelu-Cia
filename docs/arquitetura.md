@@ -160,8 +160,10 @@ Guarda chave PIX, favorecido e dados de transferência exibidos na página públ
 
 - `POST /api/contato`
 - `GET /api/contato`
+- `PATCH /api/contato/:id/lida`
+- `DELETE /api/contato/:id`
 
-Recebe nome, e-mail e mensagem da home e salva no banco. A listagem é protegida por admin.
+Recebe nome, e-mail e mensagem da home e salva no banco. Listagem, marcação de leitura e exclusão são protegidas por admin.
 
 ### Voluntariado
 
@@ -194,11 +196,9 @@ Armazena inscrições de voluntariado.
 Campos principais:
 
 - `nome`
-- `cpf`
 - `email`
 - `telefone`
 - `idade`
-- `profissao`
 - `disponibilidade`
 - `criado_em`
 
@@ -211,6 +211,7 @@ Campos principais:
 - `nome`
 - `email`
 - `mensagem`
+- `lida`
 - `criado_em`
 
 ### `contas_prestacao`
@@ -251,7 +252,7 @@ A home envia a mensagem para `POST /api/contato`. O backend valida nome, e-mail 
 
 ### Voluntariado
 
-O formulário público envia `POST /api/voluntarios`. O backend valida CPF, idade mínima e disponibilidade e salva a inscrição no banco.
+O formulário público envia `POST /api/voluntarios`. O backend valida nome, e-mail, telefone, idade mínima e disponibilidade e salva a inscrição no banco.
 
 ### Prestação de contas
 
@@ -263,7 +264,7 @@ A aba `Ajudar` busca `GET /api/doacoes` para renderizar chave PIX e dados bancá
 
 ### Admin
 
-O login gera token em memória do navegador via `localStorage`. O painel administrativo unificado usa esse token para publicar notícias, lançar contas, salvar dados de doação, consultar voluntários e ler mensagens de contato.
+O login gera token assinado no backend e armazenado no navegador via `localStorage`. O painel administrativo unificado usa esse token para publicar notícias, lançar contas, salvar dados de doação, consultar voluntários, ler mensagens de contato, marcar mensagens como lidas e excluir mensagens.
 
 ## Seed e inicialização
 
@@ -277,7 +278,7 @@ Ao iniciar o backend:
 
 - não existe upload multipart real para imagens de notícia; o admin usa `base64` no formulário atual
 - a área pública de parceiros ainda é estática
-- mensagens de contato são persistidas, mas ainda não possuem exclusão ou marcação de leitura
+- mensagens de contato possuem marcação de leitura e exclusão, mas ainda não têm filtros avançados
 - não há módulo de adoção ou relatório financeiro avançado
 
 ## Resumo

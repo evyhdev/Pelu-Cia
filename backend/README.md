@@ -210,6 +210,36 @@ Erro esperado:
 
 - `401`: token administrativo ausente ou inválido.
 
+### Marcar mensagem como lida
+
+```http
+PATCH /api/contato/:id/lida
+Authorization: Bearer token-admin
+```
+
+Resposta `200`: retorna a mensagem atualizada com `lida: true`.
+
+Erros esperados:
+
+- `400`: ID inválido.
+- `401`: token administrativo ausente ou inválido.
+- `404`: mensagem não encontrada.
+
+### Deletar mensagem
+
+```http
+DELETE /api/contato/:id
+Authorization: Bearer token-admin
+```
+
+Retorna `204 No Content` quando a mensagem é removida com sucesso.
+
+Erros esperados:
+
+- `400`: ID inválido.
+- `401`: token administrativo ausente ou inválido.
+- `404`: mensagem não encontrada.
+
 ## Rotas De Voluntários
 
 ### Criar voluntário
@@ -222,11 +252,9 @@ Content-Type: application/json
 ```json
 {
   "nome": "Nome completo",
-  "cpf": "000.000.000-00",
   "email": "email@exemplo.com",
   "telefone": "(00) 00000-0000",
   "idade": 18,
-  "profissao": "Estudante",
   "disponibilidade": "manha"
 }
 ```
@@ -254,8 +282,8 @@ Resposta `201`:
 
 Erros esperados:
 
-- `400`: campos obrigatórios, CPF inválido, idade menor que 16 ou disponibilidade inválida.
-- `409`: CPF ou e-mail já cadastrado.
+- `400`: campos obrigatórios, e-mail inválido, idade menor que 16 ou disponibilidade inválida.
+- `409`: e-mail já cadastrado.
 
 ### Listar voluntários
 

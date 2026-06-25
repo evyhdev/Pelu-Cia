@@ -107,6 +107,7 @@ O painel administrativo possui:
 - Notícias: `GET /api/noticias`
 - Contato da home: `POST /api/contato`
 - Mensagens no admin: `GET /api/contato`
+- Admin de mensagens: `PATCH /api/contato/:id/lida` e `DELETE /api/contato/:id`
 - Voluntariado: `POST /api/voluntarios`
 - Prestação de contas: `GET /api/contas`
 - Dados de doação: `GET /api/doacoes`
@@ -114,7 +115,7 @@ O painel administrativo possui:
 
 ## Observações importantes
 
-- As mensagens de contato ficam salvas no banco e aparecem na aba `Mensagens` do painel administrativo.
+- As mensagens de contato ficam salvas no banco, aparecem na aba `Mensagens` do painel administrativo e podem ser marcadas como lidas ou excluídas.
 - A página `Ajudar` consome os dados reais de doação e contas do banco.
 - A página `Notícias` e a home consomem o backend real, não dados mockados do frontend.
 

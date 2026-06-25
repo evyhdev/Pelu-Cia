@@ -3,24 +3,23 @@ import {
   obterContasPrestacao,
   removerContaPrestacao,
 } from '../services/contas.service.js';
+import { enviarCriado, enviarErro, enviarSucesso } from '../utils/http.js';
 
 export async function criarContaPrestacaoController(req, res) {
   try {
     const conta = await cadastrarContaPrestacao(req.body);
-    res.status(201).json({ sucesso: true, data: conta });
+    enviarCriado(res, conta);
   } catch (err) {
-    const status = err.status || 500;
-    const message = err.message || 'Erro ao cadastrar conta.';
-    res.status(status).json({ sucesso: false, message });
+    enviarErro(res, err, 'Erro ao cadastrar conta.');
   }
 }
 
 export async function listarContasPrestacaoController(_req, res) {
   try {
     const contas = await obterContasPrestacao();
-    res.json({ sucesso: true, data: contas });
+    enviarSucesso(res, contas);
   } catch (err) {
-    res.status(500).json({ sucesso: false, message: 'Erro ao buscar contas.' });
+    enviarErro(res, err, 'Erro ao buscar contas.');
   }
 }
 
@@ -29,8 +28,6 @@ export async function deletarContaPrestacaoController(req, res) {
     await removerContaPrestacao(req.params.id);
     res.status(204).send();
   } catch (err) {
-    const status = err.status || 500;
-    const message = err.message || 'Erro ao deletar conta.';
-    res.status(status).json({ sucesso: false, message });
+    enviarErro(res, err, 'Erro ao deletar conta.');
   }
 }

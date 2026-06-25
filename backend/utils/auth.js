@@ -7,6 +7,13 @@ function assinar(payload) {
   return crypto.createHmac('sha256', TOKEN_SECRET).update(payload).digest('hex');
 }
 
+function assinaturasIguais(assinaturaRecebida, assinaturaEsperada) {
+  const recebida = Buffer.from(assinaturaRecebida);
+  const esperada = Buffer.from(assinaturaEsperada);
+
+  return recebida.length === esperada.length && crypto.timingSafeEqual(recebida, esperada);
+}
+
 export function criarTokenAdmin() {
   const dados = {
     tipo: 'admin',
@@ -25,7 +32,7 @@ export function validarTokenAdmin(token) {
 
   const [payload, assinatura] = token.split('.');
 
-  if (!payload || !assinatura || assinar(payload) !== assinatura) {
+  if (!payload || !assinatura || !assinaturasIguais(assinatura, assinar(payload))) {
     return false;
   }
 

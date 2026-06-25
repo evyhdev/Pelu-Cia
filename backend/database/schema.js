@@ -74,7 +74,13 @@ export async function createSchema(pool) {
       nome VARCHAR(255) NOT NULL,
       email VARCHAR(255) NOT NULL,
       mensagem TEXT NOT NULL,
+      lida BOOLEAN NOT NULL DEFAULT FALSE,
       criado_em TIMESTAMP DEFAULT NOW()
     )
+  `);
+
+  await pool.query(`
+    ALTER TABLE mensagens_contato
+    ADD COLUMN IF NOT EXISTS lida BOOLEAN NOT NULL DEFAULT FALSE
   `);
 }

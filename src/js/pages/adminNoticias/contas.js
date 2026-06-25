@@ -5,8 +5,10 @@ import {
   escaparHTML,
   formatarData,
   formatarMoeda,
+  lerRespostaJson,
   obterCabecalhosAdmin,
   preencherDataAtual,
+  prepararConfirmacaoExclusao,
   tratarErroAutenticacao,
 } from "./shared.js";
 
@@ -239,7 +241,7 @@ function configurarFormularioContas() {
   document.getElementById("listaAdminContas")?.addEventListener("click", async (event) => {
     const botao = event.target.closest("[data-excluir-conta]");
 
-    if (!botao || !confirm("Deseja excluir esta movimentação?")) {
+    if (!botao || !prepararConfirmacaoExclusao(botao)) {
       return;
     }
 
@@ -252,10 +254,13 @@ function configurarFormularioContas() {
       return;
     }
 
+    const resultado = await lerRespostaJson(resposta);
+
     if (resposta.ok) {
+      definirFeedback("feedbackConta", "Movimentação excluída com sucesso.", "sucesso");
       carregarContasAdmin();
     } else {
-      definirFeedback("feedbackConta", "Não foi possível excluir a movimentação.", "erro");
+      definirFeedback("feedbackConta", resultado.message || "Não foi possível excluir a movimentação.", "erro");
     }
   });
 }

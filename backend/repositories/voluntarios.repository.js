@@ -3,21 +3,21 @@ import pool from '../config/db.js';
 export async function criarVoluntario(dados) {
   const { nome, email, telefone, idade, disponibilidade } = dados;
   const result = await pool.query(
-  `INSERT INTO voluntarios (nome, email, telefone, idade, disponibilidade)
-   VALUES ($1, $2, $3, $4, $5)
-   RETURNING id, nome, email, telefone, idade, disponibilidade, criado_em`,
-  [nome, email, telefone, idade, disponibilidade]
-);
-  return result.rows[0];
-}
+    `INSERT INTO voluntarios (nome, email, telefone, idade, disponibilidade)
+     VALUES ($1, $2, $3, $4, $5)
+     RETURNING id, nome, email, telefone, idade, disponibilidade, criado_em`,
+    [nome, email, telefone, idade, disponibilidade],
+  );
 
-export async function removerVoluntario(id) {
-  await pool.query('DELETE FROM voluntarios WHERE id = $1', [id]);
+  return result.rows[0];
 }
 
 export async function listarVoluntarios() {
   const result = await pool.query(
-    'SELECT id, nome, email, telefone, disponibilidade, criado_em FROM voluntarios ORDER BY criado_em DESC'
+    `SELECT id, nome, email, telefone, idade, disponibilidade, criado_em
+     FROM voluntarios
+     ORDER BY criado_em DESC, id DESC`,
   );
+
   return result.rows;
 }

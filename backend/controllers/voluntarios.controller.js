@@ -2,28 +2,26 @@ import {
   cadastrarVoluntario,
   obterVoluntarios,
 } from '../services/voluntarios.service.js';
+import { enviarCriado, enviarErro, enviarSucesso } from '../utils/http.js';
 
 export async function criarVoluntarioController(req, res) {
   try {
     const voluntario = await cadastrarVoluntario(req.body);
-    res.status(201).json({ sucesso: true, data: voluntario });
+    enviarCriado(res, voluntario);
   } catch (err) {
-    const status = err.status || 500;
-    const message = err.message || 'Erro interno do servidor.';
-
     if (err.code === '23505') {
       return res.status(409).json({ sucesso: false, message: 'E-mail já cadastrado.' });
     }
 
-    res.status(status).json({ sucesso: false, message });
+    enviarErro(res, err, 'Erro interno do servidor.');
   }
 }
 
 export async function listarVoluntariosController(req, res) {
   try {
     const voluntarios = await obterVoluntarios();
-    res.json({ sucesso: true, data: voluntarios });
+    enviarSucesso(res, voluntarios);
   } catch (err) {
-    res.status(500).json({ sucesso: false, message: 'Erro ao buscar voluntários.' });
+    enviarErro(res, err, 'Erro ao buscar voluntários.');
   }
 }

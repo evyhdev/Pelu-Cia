@@ -88,9 +88,21 @@ export function renderVoluntarioPage() {
 
           <button type="submit" class="btn-submit">Enviar Inscrição</button>
         </form>
+        <p class="feedback-voluntario" id="feedbackVoluntarioPublico" role="status" aria-live="polite"></p>
       </div>
     </section>
   `;
+}
+
+function definirFeedbackVoluntario(texto, tipo = "") {
+  const feedback = document.getElementById("feedbackVoluntarioPublico");
+
+  if (!feedback) {
+    return;
+  }
+
+  feedback.textContent = texto;
+  feedback.className = `feedback-voluntario${tipo ? ` ${tipo}` : ""}`;
 }
 
 document.addEventListener("submit", async (event) => {
@@ -110,6 +122,7 @@ document.addEventListener("submit", async (event) => {
     };
 
     try {
+      definirFeedbackVoluntario("Enviando inscrição...");
       const resposta = await fetch(apiUrl("/api/voluntarios"), {
         method: "POST",
         headers: {
@@ -121,13 +134,13 @@ document.addEventListener("submit", async (event) => {
       const resultado = await resposta.json();
 
       if (resposta.ok) {
-        alert("Voluntário cadastrado com sucesso!");
+        definirFeedbackVoluntario("Inscrição enviada com sucesso. Entraremos em contato pelos dados informados.", "sucesso");
         event.target.reset();
       } else {
-        alert("Erro ao cadastrar: " + resultado.message);
+        definirFeedbackVoluntario(resultado.message || "Erro ao cadastrar voluntário.", "erro");
       }
     } catch (erro) {
-      alert("Não foi possível conectar ao servidor.");
+      definirFeedbackVoluntario("Não foi possível conectar ao servidor.", "erro");
     }
   }
 });

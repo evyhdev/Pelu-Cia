@@ -1,24 +1,43 @@
 import {
   enviarMensagemContato,
+  marcarMensagemContatoComoLida,
   obterMensagensContato,
+  removerMensagemContato,
 } from '../services/contato.service.js';
+import { enviarCriado, enviarErro, enviarSucesso } from '../utils/http.js';
 
 export async function enviarMensagemContatoController(req, res) {
   try {
     const mensagem = await enviarMensagemContato(req.body);
-    res.status(201).json({ sucesso: true, data: mensagem });
+    enviarCriado(res, mensagem);
   } catch (err) {
-    const status = err.status || 500;
-    const message = err.message || 'Erro ao salvar mensagem de contato.';
-    res.status(status).json({ sucesso: false, message });
+    enviarErro(res, err, 'Erro ao salvar mensagem de contato.');
   }
 }
 
 export async function listarMensagensContatoController(_req, res) {
   try {
     const mensagens = await obterMensagensContato();
-    res.json({ sucesso: true, data: mensagens });
+    enviarSucesso(res, mensagens);
   } catch (err) {
-    res.status(500).json({ sucesso: false, message: 'Erro ao buscar mensagens.' });
+    enviarErro(res, err, 'Erro ao buscar mensagens.');
+  }
+}
+
+export async function marcarMensagemContatoComoLidaController(req, res) {
+  try {
+    const mensagem = await marcarMensagemContatoComoLida(req.params.id);
+    enviarSucesso(res, mensagem);
+  } catch (err) {
+    enviarErro(res, err, 'Erro ao marcar mensagem como lida.');
+  }
+}
+
+export async function deletarMensagemContatoController(req, res) {
+  try {
+    await removerMensagemContato(req.params.id);
+    res.status(204).send();
+  } catch (err) {
+    enviarErro(res, err, 'Erro ao deletar mensagem.');
   }
 }

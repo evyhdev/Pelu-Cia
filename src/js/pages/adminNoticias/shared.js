@@ -60,6 +60,33 @@ export function definirFeedback(id, texto, tipo = "") {
   elemento.className = `admin-feedback${tipo ? ` ${tipo}` : ""}`;
 }
 
+export function prepararConfirmacaoExclusao(botao, texto = "Confirmar exclusão") {
+  if (botao.dataset.confirmando === "true") {
+    return true;
+  }
+
+  botao.dataset.confirmando = "true";
+  botao.dataset.textoOriginal = botao.textContent;
+  botao.textContent = texto;
+
+  setTimeout(() => {
+    if (botao.isConnected && botao.dataset.confirmando === "true") {
+      botao.dataset.confirmando = "false";
+      botao.textContent = botao.dataset.textoOriginal || "Excluir";
+    }
+  }, 4000);
+
+  return false;
+}
+
+export async function lerRespostaJson(resposta) {
+  if (resposta.status === 204) {
+    return {};
+  }
+
+  return await resposta.json();
+}
+
 export function tratarErroAutenticacao(status) {
   if (status === 401) {
     localStorage.removeItem("adminToken");
@@ -87,4 +114,3 @@ export function lerFoto(arquivo) {
     leitor.readAsDataURL(arquivo);
   });
 }
-

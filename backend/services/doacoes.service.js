@@ -1,4 +1,5 @@
 import { obterConfiguracaoDoacao, salvarConfiguracaoDoacao } from '../repositories/doacoes.repository.js';
+import { criarErro } from '../utils/http.js';
 
 function limpar(valor) {
   return String(valor ?? '').trim();
@@ -23,7 +24,7 @@ function validarConfiguracaoDoacao(dados) {
     !configuracao.conta ||
     !configuracao.instituicao
   ) {
-    throw { status: 400, message: 'Todos os campos principais de doação são obrigatórios.' };
+    throw criarErro(400, 'Todos os campos principais de doação são obrigatórios.');
   }
 
   return configuracao;

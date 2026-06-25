@@ -3,17 +3,18 @@ import {
   deletarNoticia,
   listarNoticias,
 } from '../repositories/noticias.repository.js';
+import { criarErro } from '../utils/http.js';
 import { validarIdNumerico } from '../utils/validations.js';
 
 function validarNoticia(dados) {
   const { titulo, foto, resumo, noticia, data, tipo } = dados;
 
   if (!titulo || !foto || !resumo || !noticia || !data || !tipo) {
-    throw { status: 400, message: 'Todos os campos da notícia são obrigatórios.' };
+    throw criarErro(400, 'Todos os campos da notícia são obrigatórios.');
   }
 
   if (Number.isNaN(Date.parse(data))) {
-    throw { status: 400, message: 'Data inválida.' };
+    throw criarErro(400, 'Data inválida.');
   }
 
   return {
@@ -40,6 +41,6 @@ export async function removerNoticia(id) {
   const noticiaFoiRemovida = await deletarNoticia(idNumerico);
 
   if (!noticiaFoiRemovida) {
-    throw { status: 404, message: 'Notícia não encontrada.' };
+    throw criarErro(404, 'Notícia não encontrada.');
   }
 }

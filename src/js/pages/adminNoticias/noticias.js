@@ -4,8 +4,10 @@ import {
   escaparHTML,
   formatarData,
   lerFoto,
+  lerRespostaJson,
   obterCabecalhosAdmin,
   preencherDataAtual,
+  prepararConfirmacaoExclusao,
   tratarErroAutenticacao,
 } from "./shared.js";
 
@@ -147,7 +149,7 @@ function configurarFormularioNoticias() {
   document.getElementById("listaAdminNoticias")?.addEventListener("click", async (event) => {
     const botao = event.target.closest("[data-excluir-noticia]");
 
-    if (!botao || !confirm("Deseja excluir esta notícia?")) {
+    if (!botao || !prepararConfirmacaoExclusao(botao)) {
       return;
     }
 
@@ -160,10 +162,13 @@ function configurarFormularioNoticias() {
       return;
     }
 
+    const resultado = await lerRespostaJson(resposta);
+
     if (resposta.ok) {
+      definirFeedback("feedbackNoticia", "Notícia excluída com sucesso.", "sucesso");
       carregarNoticiasAdmin();
     } else {
-      definirFeedback("feedbackNoticia", "Não foi possível excluir a notícia.", "erro");
+      definirFeedback("feedbackNoticia", resultado.message || "Não foi possível excluir a notícia.", "erro");
     }
   });
 }
