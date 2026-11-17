@@ -56,7 +56,7 @@ export function renderHomePage() {
           <textarea id="message" name="message" required></textarea>
 
           <button type="submit">Enviar Mensagem</button>
-          <p class="admin-feedback" id="feedbackContatoHome"></p>
+          <p class="feedback-form" id="feedbackContatoHome" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
@@ -129,8 +129,10 @@ export async function initHomePage() {
 
   formContato?.addEventListener("submit", async (event) => {
     event.preventDefault();
+    const botaoEnviar = formContato.querySelector('button[type="submit"]');
+    botaoEnviar.disabled = true;
     feedbackContato.textContent = "Salvando mensagem...";
-    feedbackContato.className = "admin-feedback";
+    feedbackContato.className = "feedback-form";
 
     try {
       const resposta = await fetch(apiUrl("/api/contato"), {
@@ -149,15 +151,17 @@ export async function initHomePage() {
 
       if (resposta.ok) {
         feedbackContato.textContent = "Mensagem salva com sucesso.";
-        feedbackContato.className = "admin-feedback sucesso";
+        feedbackContato.className = "feedback-form feedback-sucesso";
         formContato.reset();
       } else {
         feedbackContato.textContent = resultado.message || "Erro ao salvar mensagem.";
-        feedbackContato.className = "admin-feedback erro";
+        feedbackContato.className = "feedback-form feedback-erro";
       }
     } catch (_erro) {
       feedbackContato.textContent = "Não foi possível conectar ao servidor.";
-      feedbackContato.className = "admin-feedback erro";
+      feedbackContato.className = "feedback-form feedback-erro";
+    } finally {
+      botaoEnviar.disabled = false;
     }
   });
 }

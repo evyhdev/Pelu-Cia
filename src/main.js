@@ -6,7 +6,7 @@ import { initHomePage, renderHomePage } from './js/pages/home.js';
 import { initLoginPage, renderLoginPage } from './js/pages/login.js';
 import { initNoticiasPage, renderNoticiasPage } from './js/pages/noticias.js';
 import { renderSobrePage } from './js/pages/sobre.js';
-import { renderVoluntarioPage } from './js/pages/voluntario.js';
+import { initVoluntarioPage, renderVoluntarioPage } from './js/pages/voluntario.js';
 
 const routes = {
   '/': {
@@ -38,6 +38,7 @@ const routes = {
     render: renderVoluntarioPage,
     title: 'Pelu&Cia - Voluntariado',
     pageClass: 'voluntariado-page',
+    afterRender: initVoluntarioPage,
   },
   '/login': {
     render: renderLoginPage,

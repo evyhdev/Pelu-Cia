@@ -87,27 +87,32 @@ export function renderVoluntarioPage() {
           </div>
 
           <button type="submit" class="btn-submit">Enviar Inscrição</button>
+          <p class="feedback-form" id="feedbackVoluntario" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
   `;
 }
 
-document.addEventListener("submit", async (event) => {
-  if (event.target && event.target.id === "formVoluntario") {
-    event.preventDefault();
+export function initVoluntarioPage() {
+  const form = document.getElementById("formVoluntario");
+  const feedback = document.getElementById("feedbackVoluntario");
 
-    const disponibilidadeSelecionada = document.querySelector(
-      'input[name="disponibilidade"]:checked'
-    )?.value;
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const botaoEnviar = form.querySelector('button[type="submit"]');
+    botaoEnviar.disabled = true;
 
     const dados = {
       nome: document.getElementById("nome").value,
       email: document.getElementById("email").value,
       telefone: document.getElementById("telefone").value,
-      idade: parseInt(document.getElementById("idade").value),
-      disponibilidade: disponibilidadeSelecionada,
+      idade: Number.parseInt(document.getElementById("idade").value, 10),
+      disponibilidade: document.querySelector('input[name="disponibilidade"]:checked')?.value,
     };
+
+    feedback.textContent = "Enviando inscrição...";
+    feedback.className = "feedback-form";
 
     try {
       const resposta = await fetch(apiUrl("/api/voluntarios"), {
@@ -120,14 +125,18 @@ document.addEventListener("submit", async (event) => {
 
       const resultado = await resposta.json();
 
-      if (resposta.ok) {
-        alert("Voluntário cadastrado com sucesso!");
-        event.target.reset();
-      } else {
-        alert("Erro ao cadastrar: " + resultado.message);
+      if (!resposta.ok) {
+        throw new Error(resultado.message || "Erro ao cadastrar voluntário.");
       }
+
+      feedback.textContent = "Inscrição enviada com sucesso.";
+      feedback.className = "feedback-form feedback-sucesso";
+      form.reset();
     } catch (erro) {
-      alert("Não foi possível conectar ao servidor.");
+      feedback.textContent = erro.message || "Não foi possível conectar ao servidor.";
+      feedback.className = "feedback-form feedback-erro";
+    } finally {
+      botaoEnviar.disabled = false;
     }
-  }
-});
+  });
+}

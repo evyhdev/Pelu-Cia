@@ -170,3 +170,9 @@ a {
 .botao-login:hover {
   background-color: var(--azul-escuro);
 }
+
+.btn-submit:disabled,
+.formulario-contato button:disabled {
+  background-color: var(--cinza-subtitulo);
+  cursor: wait;
+}
